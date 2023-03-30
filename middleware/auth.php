@@ -15,22 +15,22 @@ class AuthMiddleware
             $username = $_SESSION["username"];
             session_write_close();
             return $username;
-            exit;
+            // exit;
         } else {
             // since the username is not set in session, the user is not-logged-in
             // he is trying to access this page unauthorized
             // so let's clear all session variables and redirect him to login
-            self::logout();
+            // self::logout();
             // header('Location:','./logout.php');
             return false;
             exit;
         }
         
     }
-    public static function logout(){
+    // public static function logout(){
 
-        session_unset();
-        session_destroy();
-        header("Location: ./login.php");
-    }
+    //     session_unset();
+    //     session_destroy();
+    //     header("Location: ./login.php");
+    // }
 }
