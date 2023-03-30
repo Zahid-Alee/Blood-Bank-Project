@@ -1,0 +1,17 @@
+{
+    "name": "zahid/blood-bank-project",
+    "autoload": {
+        "psr-4": {
+            "Zahid\\BloodBankProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zahid",
+            "email": "zahid177617@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.4"
+    }
+}
