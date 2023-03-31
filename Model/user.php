@@ -1,15 +1,15 @@
 <?php
-namespace Phppot;
+namespace DataSource;
 
 class user
 {
 
-    private $ds;
+    private $conn;
 
     function __construct()
     {
         require_once __DIR__ . '/../lib/DataSource.php';
-        $this->ds = new DataSource();
+        $this->conn = new DataSource();
     }
 
     /**
@@ -25,7 +25,7 @@ class user
         $paramValue = array(
             $username
         );
-        $resultArray = $this->ds->select($query, $paramType, $paramValue);
+        $resultArray = $this->conn->select($query, $paramType, $paramValue);
         $count = 0;
         if (is_array($resultArray)) {
             $count = count($resultArray);
@@ -51,7 +51,7 @@ class user
         $paramValue = array(
             $email
         );
-        $resultArray = $this->ds->select($query, $paramType, $paramValue);
+        $resultArray = $this->conn->select($query, $paramType, $paramValue);
         $count = 0;
         if (is_array($resultArray)) {
             $count = count($resultArray);
@@ -97,7 +97,7 @@ class user
                 $hashedPassword,
                 $_POST["email"]
             );
-            $userId = $this->ds->insert($query, $paramType, $paramValue);
+            $userId = $this->conn->insert($query, $paramType, $paramValue);
             if (! empty($userId)) {
                 $response = array(
                     "status" => "success",
@@ -115,7 +115,7 @@ class user
         $paramValue = array(
             $username
         );
-        $userRecord = $this->ds->select($query, $paramType, $paramValue);
+        $userRecord = $this->conn->select($query, $paramType, $paramValue);
         return $userRecord;
     }
 

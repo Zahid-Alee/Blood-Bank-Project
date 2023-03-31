@@ -1,11 +1,13 @@
 <?php
 
-// use Phppot\user;
+// use DataSource\user;
 require_once __DIR__ . '/middleware/auth.php';
 $checkAuth = new authMiddleware\AuthMiddleware;
 $username = null;
 
 if (!$checkAuth->checkAuth()) {
+    
+    header('Location:login.php');
     exit; // stop executing the rest of the page
 } else {
 // session_start();
@@ -22,7 +24,7 @@ if (!$checkAuth->checkAuth()) {
   <title>Blood Bank Management System</title>
 <body>
 <?php 
-  echo require_once('./components/admin/adminPanel.php');
+  echo require_once('./components/users/user.php');
   ?>
 
 

@@ -4,7 +4,7 @@ header("Cache-Control: no-cache, must-revalidate");
 header("Expires "); 
 
 
-use Phppot\user;
+use DataSource\user;
 
 if (! empty($_POST["login-btn"])) {
     require_once __DIR__ . '/Model/user.php';
@@ -15,14 +15,14 @@ if (! empty($_POST["login-btn"])) {
 <HTML>
 <HEAD>
 <TITLE>Login</TITLE>
-<link href="assets/css/phppot-style.css" type="text/css"
+<link href="assets/css/DataSource-style.css" type="text/css"
 	rel="stylesheet" />
 <link href="assets/css/user-registration.css" type="text/css"
 	rel="stylesheet" />
 <script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 </HEAD>
 <BODY>
-	<div class="phppot-container">
+	<div class="DataSource-container">
 		<div class="sign-up-container">
 			<div class="login-signup">
 				<a href="user-registration.php">Sign up</a>

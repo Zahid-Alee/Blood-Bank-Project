@@ -1,7 +1,7 @@
 <?php
 
 namespace authMiddleware;
-// use Phppot\user;
+// use DataSource\user;
 // header('Cache-Control: no-store, no-cache, must-revalidate');
 // header('Expires: 0');
 

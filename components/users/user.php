@@ -32,87 +32,13 @@
         color: rgb(186, 184, 184);
     }
   
-
-
-
-
   </style>
 </head>
 <body>
+
+
         <!-- Navigation Bar -->
- <?php require_once __DIR__ .'/navbar.php'; ?>
- <?php require_once __DIR__ .'/sidebar.php';?>
 
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Dashboard</h1>
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-          <button class="btn btn-sm btn-outline-secondary">Share</button>
-          <button class="btn btn-sm btn-outline-secondary">Export</button>
-        </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <span data-feather="calendar"></span>
-          This week
-        </button>
-      </div>
-    </div>
-
-    
-  <?php
-   require_once __DIR__ .'/displayStock.php'
-    ?>
-<!-- 
-
-<!-- 
-    <div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Donor Name</th>
-        <th>Blood Group</th>
-        <th>Quantity (ml)</th>
-        <th>Location</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>O+</td>
-        <td>500</td>
-        <td>New York</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>A-</td>
-        <td>200</td>
-        <td>Los Angeles</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>Bob Johnson</td>
-        <td>B+</td>
-        <td>350</td>
-        <td>Chicago</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-
-<!-- 
  <div class='card'>
 <div class="card border-0 rounded-0 animate__animated animate__fadeIn">
   <div class="card-header bg-danger text-white">
@@ -141,19 +67,21 @@
     <a href="#" class="btn btn-danger"><i class="fas fa-phone-alt"></i> Contact Donor</a>
     <i class="far fa-heart float-right"></i>
   </div>
-</div>  -->
-<!-- 
+</div>  
+ 
  </div>
 <div class="container mt-5">
   <div class="card border-0 rounded-0 animate__animated animate__fadeIn">
     <div class="card-header bg-danger text-white">
       <h5 class="card-title mb-0"><i class="fas fa-tint"></i> Post Blood Donation</h5>
     </div>
+
+
     <div class="card-body">
-      <form id="bloodDonationForm">
+      <form id="bloodDonationForm" action="../../Model/bloodManagement.php" method="post">
         <div class="form-group">
           <label for="donorName"><i class="fas fa-user"></i> Donor Name</label>
-          <input type="text" class="form-control" id="donorName" name="donorName" placeholder="Enter your name" required>
+          <input type="text" class="form-control" id="donorName" name="donor_name" placeholder="Enter your name" required>
         </div>
         <div class="form-group">
           <label for="donorAge"><i class="fas fa-male"></i> Donor Age</label>
@@ -161,7 +89,7 @@
         </div>
         <div class="form-group">
           <label for="bloodType"><i class="fas fa-notes-medical"></i> Blood Type</label>
-          <select class="form-control" id="bloodType" name="bloodType" required>
+          <select class="form-control" id="bloodType" name="blood_group" required>
             <option value="" disabled selected>Select blood type</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -225,6 +153,6 @@
     crossorigin="anonymous"></script>
   <script>
     feather.replace()
-  </script>-->
+  </script>
 </body>
 </html> 

@@ -51,11 +51,34 @@ Action</th>
   <tbody>
   <?php
 // Sample data
-$stocks = [
-  ['id' => 1, 'name' => 'John Doe', 'blood_group' => 'A+', 'units_available' => 5],
-  ['id' => 2, 'name' => 'Jane Smith', 'blood_group' => 'O-', 'units_available' => 3],
-  ['id' => 3, 'name' => 'Bob Johnson', 'blood_group' => 'AB+', 'units_available' => 8]
-];
+
+// Establish a database connection
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'blood-bank-management-system';
+
+$connection = mysqli_connect($host, $user, $password, $database);
+
+if (!$connection) {
+  die('Connection failed: ' . mysqli_connect_error());
+}
+
+// Execute the query to retrieve the records from the blood_stock table
+$sql = 'SELECT * FROM blood_stock';
+$result = mysqli_query($connection, $sql);
+
+// Store the results in an array
+$stocks = array();
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $stocks[] = $row;
+  }
+}
+
+// Close the database connection
+mysqli_close($connection);
+
 
 // Loop through the stocks and repeat the HTML elements for each record
 foreach ($stocks as $stock) {
@@ -64,11 +87,11 @@ foreach ($stocks as $stock) {
 <tr>
     <th scope="row">
 
-        <?php echo $stock['id']; ?>
+        <?php echo $stock['stock_id']; ?>
     </th>
       <td>
         <span class="table-icon"></span>
-        <?php echo $stock['name']; ?>
+        <?php echo $stock['expiry_date']; ?>
       </td>
       <td>
         <span class="table-icon"><i class="fas fa-tint"></i></span>
@@ -76,7 +99,7 @@ foreach ($stocks as $stock) {
       </td>
       <td>
         <span class="table-icon"></span>
-        <?php echo $stock['units_available']; ?>
+        <?php echo $stock['quantity']; ?>
       </td>
       <td>
         <span class="table-icon"></span>

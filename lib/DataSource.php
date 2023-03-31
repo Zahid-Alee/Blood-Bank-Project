@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright (C) Phppot
+ * Copyright (C) DataSource
  *
  * Distributed under 'The MIT License (MIT)'
  * In essense, you can do commercial use, modify, distribute and private use.
- * Though not mandatory, you are requested to attribute Phppot URL in your code or website.
+ * Though not mandatory, you are requested to attribute DataSource URL in your code or website.
  */
-namespace Phppot;
+namespace DataSource;
 
 /**
  * Generic datasource class for handling DB operations.
