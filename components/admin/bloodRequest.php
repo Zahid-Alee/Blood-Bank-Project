@@ -63,7 +63,12 @@
     $stocks = $con->select($query, $paramType, $paramArray);
 
     foreach ($stocks as $stock) {
+      
+  
+    ?>
+    <?php
     
+    $name = 'zahid';
     ?>
 
       <tr>
@@ -88,15 +93,38 @@
           <?php echo substr($stock['location'], 0, 20) . '....'; ?>
         </td>
         <td class='text-center'>
-        <span  class="table-icon text-success px-2"><i class="fas fa-check"></i></span>
+        <span  class="table-icon text-success px-2" onclick="insertStock(<?php echo htmlspecialchars(json_encode($stock), ENT_QUOTES, 'UTF-8'); ?>,'<?php echo uniqid('stock-')?>')" ><i class="fas fa-check"></i></span>
+        <!-- -->
 
         <span  class="table-icon text-danger px-2"><i class="fas fa-times"></i></span>
-
+         
+    
         </td>
       </tr>
     <?php
     }
     ?>
-    <!-- Add more rows as needed -->
   </tbody>
 </table>
+<script defer>
+   const insertStock = async(data,stockID)=>{
+
+    // data.append(stockID);
+    // console.log(data)
+    Object.assign(data,{stock_id:stockID});
+    console.log(data);
+      
+      fetch('http://localhost/BBM/Model/insertStock.php ', {
+          method: 'POST',
+          body: data
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+   } 
+</script>
