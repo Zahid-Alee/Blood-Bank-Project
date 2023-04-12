@@ -60,7 +60,7 @@
 
     
   <?php
-   require_once __DIR__ .'/displayStock.php'
+   require_once __DIR__ .'/bloodRequest.php'
     ?>
 <!-- 
 

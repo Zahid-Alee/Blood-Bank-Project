@@ -24,7 +24,7 @@ if (!$checkAuth->checkAuth()) {
   <title>Blood Bank Management System</title>
 <body>
 <?php 
-  echo require_once('./components/users/user.php');
+  echo require_once('./components/admin/adminPanel.php');
   ?>
 
 

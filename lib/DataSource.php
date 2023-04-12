@@ -26,7 +26,7 @@ class DataSource
 
     const PASSWORD = '';
 
-    const DATABASENAME = 'Blood-Bank-Management-System';
+    const DATABASENAME = 'blood_bank';
 
     private $conn;
 

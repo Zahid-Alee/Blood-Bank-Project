@@ -2,6 +2,7 @@
 
 use DataSource\DataSource;
 
+
 class BloodManagement{
     private $conn;
 
@@ -13,15 +14,18 @@ class BloodManagement{
 
     function insertDonor(){
 
-        $query = 'INSERT INTO donors (donor_name, blood_group, last_donated_date, contact_no, email, address) VALUES(?,?,?,?,?,?)';
-        $paramType = 'ssssss';
+        $query = 'INSERT INTO blood_donation (donation_id,donor_name,age, blood_group, last_donated_date, quantity,contact_no, email, location) VALUES(?,?,?,?,?,?,?,?,?)';
+        $paramType = 'sssssssss';
         $paramValue = array(
+            $_POST["donation_id"],
             $_POST["donor_name"],
+            $_POST["age"],
             $_POST["blood_group"],
             $_POST["last_donated_date"],
+            $_POST["quantity"],
             $_POST["contact_no"],
             $_POST["email"],
-            $_POST["address"],
+            $_POST["location"],
         );
         $donorID = $this->conn->insert($query, $paramType, $paramValue);
         if (! empty($donorID)) {
@@ -29,13 +33,24 @@ class BloodManagement{
                 "status" => "success",
                 "message" => "You have registered successfully."
             );
-        }
+
+ 
+}
     return $response;
 
     }
 
 }
 
+if($_POST){
 
+    $data = $_POST;
+    print_r($data);
+
+    $inserDonor =
+ new BloodManagement;
+
+ $inserDonor->insertDonor();
+   };
 
 ?>
