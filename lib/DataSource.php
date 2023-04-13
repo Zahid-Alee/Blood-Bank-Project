@@ -120,14 +120,57 @@ class DataSource
      * @return int
      */
     public function insert($query, $paramType, $paramArray)
+{
+    $stmt = $this->conn->prepare($query);
+    $this->bindQueryParams($stmt, $paramType, $paramArray);
+
+    if (!$stmt->execute()) {
+        // handle error
+        return false;
+    }
+
+    $insertId = $this->conn->insert_id;
+    echo $insertId;
+    return $insertId;
+}
+
+    
+        /**
+     * To update
+     *
+     * @param string $query
+     * @param string $paramType
+     * @param array $paramArray
+     * @return int
+     */
+    public function update($query, $paramType, $paramArray)
     {
         $stmt = $this->conn->prepare($query);
         $this->bindQueryParams($stmt, $paramType, $paramArray);
 
         $stmt->execute();
-        $insertId = $stmt->insert_id;
-        return $insertId;
+        $affectedRows = $stmt->affected_rows;
+        return $affectedRows;
     }
+
+    /**
+     * To delete
+     *
+     * @param string $query
+     * @param string $paramType
+     * @param array $paramArray
+     * @return int
+     */
+    public function delete($query, $paramType, $paramArray)
+    {
+        $stmt = $this->conn->prepare($query);
+        $this->bindQueryParams($stmt, $paramType, $paramArray);
+
+        $stmt->execute();
+        $affectedRows = $stmt->affected_rows;
+        return $affectedRows;
+    }
+
 
     /**
      * To execute query

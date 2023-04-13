@@ -27,7 +27,9 @@ CREATE TABLE `blood_donation` (
   `donor_name` varchar(255) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(255),
-  `age` int(11) NOT NULL
+  `age` int(11) NOT NULL,
+  `request_status` varchar(20) NOT NULL DEFAULT 'Pending',
+
 );
 CREATE TABLE `blood_stock` (
   `stock_id` varchar(100) PRIMARY KEY,

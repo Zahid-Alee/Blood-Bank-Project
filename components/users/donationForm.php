@@ -130,9 +130,6 @@
       <button type="submit" id="submit-btn" class="btn btn-danger "><i class="fas fa-paper-plane"></i> Submit</button>
     </form>
   </div>
-  <!-- </div>
-  </div>
-</div>  -->
 
   <script>
     const form = document.getElementById('bloodDonationForm');
@@ -155,10 +152,6 @@
           // handle error response here
         });
     }
-
-    // Add code here to send the form data to the server using AJAX or fetch
-
-    // Add code here to send the form data to the server using AJAX or fetch
   </script>
 
 
