@@ -1,48 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Static Sidebar Example</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <style>
-    .sidebar {
-      /* position: fixed; */
-      top: 6px;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-      padding: 48px 0 0;
-      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-    }
 
-    .sidebar-sticky {
-      position: relative;
-      top: 0;
-      height: calc(100vh - 48px);
-      padding-top: .5rem;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-    a{
-        color: aliceblue;
-    }
-    a:hover{
-        color: rgb(186, 184, 184);
-    }
-  
-
-
-
-
-  </style>
-</head>
-<body>
-        <!-- Navigation Bar -->
- <?php require_once __DIR__ .'/navbar.php'; ?>
- <?php require_once __DIR__ .'/sidebar.php';?>
-
+  <!-- Navigation Bar -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/admin.css">
+  </head>
+  <body>
+  <?php require_once  './components/navbar.php'; ?>
+  <?php require_once  'sidebar.php'; ?>
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Dashboard</h1>
@@ -57,62 +26,27 @@
         </button>
       </div>
     </div>
+    <?php
+    $link = isset($_GET['link']) ? $_GET['link'] : 'dashboard';
+    if ($link == 'dashboard') {
+      require_once 'dashboard.php';
+    } elseif ($link == 'checkStock') {
+      require_once 'checkStock.php';
+    } elseif ($link == 'donationRequest') {
+      require_once 'donationRequest.php';
+    }
+    elseif ($link == 'donationForm') {
+      require_once './components/donationForm.php';
+    }
 
-    
-  <?php
-   require_once __DIR__ .'/bloodRequest.php'
     ?>
+  </body>
+  </html>
+ 
+    <!-- 
 <!-- 
-
 <!-- 
-    <div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Donor Name</th>
-        <th>Blood Group</th>
-        <th>Quantity (ml)</th>
-        <th>Location</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>O+</td>
-        <td>500</td>
-        <td>New York</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>A-</td>
-        <td>200</td>
-        <td>Los Angeles</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>Bob Johnson</td>
-        <td>B+</td>
-        <td>350</td>
-        <td>Chicago</td>
-        <td>
-          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-
-<!-- 
+   
  <div class='card'>
 <div class="card border-0 rounded-0 animate__animated animate__fadeIn">
   <div class="card-header bg-danger text-white">
@@ -141,8 +75,8 @@
     <a href="#" class="btn btn-danger"><i class="fas fa-phone-alt"></i> Contact Donor</a>
     <i class="far fa-heart float-right"></i>
   </div>
-</div>  -->
-<!-- 
+</div>  
+
  </div>
 <div class="container mt-5">
   <div class="card border-0 rounded-0 animate__animated animate__fadeIn">
@@ -226,5 +160,3 @@
   <script>
     feather.replace()
   </script>-->
-</body>
-</html> 

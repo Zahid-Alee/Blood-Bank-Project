@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang='eng'>
 
-<head>
-  <style>
-    table {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
-    }
-
-    thead th {
-      background-color: #941818 !important;
-      color: #fff;
-    }
-
-    .table-icon {
-      margin-right: 5px;
-    }
-
-    .table-icon i {
-      color: #dc3545;
-    }
-
-    tbody tr:nth-of-type(odd) {
-      background-color: #f8f9fa;
-    }
-
-    .action-icons {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .action-icons a {
-      margin-right: 5px;
-    }
-  </style>
-
-</head>
-
-<body>
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
       <tr>
@@ -121,8 +79,8 @@
         request_status:'approved'
       });
 
-      result = await postReq(data); // wait for the Promise to resolve
-      console.log(result);
+      result = await postReq(data); 
+      location.reload()
     }
 
     const deleteDonor = async (donorID) => {
@@ -133,6 +91,7 @@
       }
       result = await postReq(data); // wait for the Promise to resolve
       console.log(result);
+      location.reload();
     }
 
     const postReq = async (data) => {
@@ -152,6 +111,5 @@
       }
     }
   </script>
-</body>
 
-</html>
+

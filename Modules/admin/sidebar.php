@@ -4,34 +4,35 @@
         <div class="sidebar-sticky bg-dark text-light">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <span class="nav-link active" onclick="javascript:window.location.href='?link=dashboard'">
                 <i class="fas fa-home "></i>
                 Dashboard
-              </a>
+              </span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <span onclick="javascript:window.location.href='?link=checkStock'" class="nav-link">
                 <i class="fas fa-chart-bar"></i>
-                Link-1
-              </a>
+                Check Stock
+              </span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <span class="nav-link" onclick="javascript:window.location.href='?link=donationRequest'">
                 <i class="fas fa-folder"></i>
-                Link-2
-              </a>
+                Donation Requests
+              </span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <span onclick="javascript:window.location.href='?link=bloodRequest'"
+               class="nav-link" >
                 <i class="fas fa-box-open"></i>
-                Link-3
-              </a>
+                Blood Requests
+              </span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <span class="nav-link" onclick="javascript:window.location.href='?link=donationForm'">
                 <i class="fas fa-users"></i>
-                Link-4
-              </a>
+                Add Donor
+              </span>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
@@ -50,18 +51,8 @@
                 <i class="fas fa-chevron-right"></i>
                 More
               </a>
-              <ul class="nav flex-column ml-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Sublink 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Sublink 2</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Sublink 3</a>
-                </li>
-            </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
+            
+            </li>
+          </ul>
+        </div>
+      </nav>
