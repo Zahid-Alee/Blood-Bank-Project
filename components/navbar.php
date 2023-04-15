@@ -1,44 +1,214 @@
+<style>
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .navbar-nav .nav-link {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .search-bar {
+    position: relative;
+  }
+
+  .search-bar input[type="search"] {
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .search-bar input[type="search"]:focus {
+    width: 300px;
+    border-bottom: 2px solid red;
+  }
+
+  .search-suggestions {
+    display: none;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    list-style: none;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .search-suggestions li {
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .search-suggestions li:hover {
+    background-color: #f2f2f2;
+  }
+
+  .search-suggestions li.active {
+    background-color: #ddd;
+  }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <!-- Logo -->
-              <a class="navbar-brand" href="#">Blood Bank</a>
-              <!-- Toggle Button for smaller screen sizes -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <!-- Navigation Links -->
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link-2</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">Link-3</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Blood Donation</a></li>
-                      <li><a class="dropdown-item" href="#">Blood Testing</a></li>
-                      <li><a class="dropdown-item" href="#">Blood Storage</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                  </li>
-                </ul>
-                <!-- Search Bar Input Field -->
-                <form class="d-flex ms-auto">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <!-- Login/Logout Button -->
-                <div class="d-flex">
-                  <button class="btn btn-primary ms-3">Login</button>
-                  <button class="btn btn-danger ms-3">Logout</button>
-                </div>
-              </div>
-            </div>
-          </nav>
+  <a class="navbar-brand" href="#">Logo</a>
+  <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-search"></i> Search</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item search-option" href="#" data-type="location">Location</a>
+          <a class="dropdown-item search-option" href="#" data-type="blood-group">Blood Group</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign up</a>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <div class="search-bar">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <ul class="list-group search-suggestions"></ul>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<script>
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+
+  navbarToggler.addEventListener('click', () => {
+    navbarCollapse.classList.toggle('show');
+  });
+
+
+  const searchInput = document.querySelector('input[type="search"]');
+  const searchSuggestions = document.querySelector('.search-suggestions');
+
+  const searchOptionLinks = document.querySelectorAll('.search-option');
+
+  // Show search options dropdown when search button is clicked
+  document.querySelector('.nav-link.dropdown-toggle').addEventListener('click', function() {
+    document.querySelector('.dropdown-menu').classList.toggle('show');
+  });
+
+  // Add click event listeners to search option links
+  searchOptionLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      // Update search input placeholder text based on selected option
+      searchInput.setAttribute('placeholder', 'Search by ' + this.dataset.type);
+
+      // Add selected option class to search bar
+      document.querySelector('.search-bar').classList.add(this.dataset.type);
+
+      // Show search suggestions
+      searchSuggestions.classList.add('show');
+
+      // Focus on search input
+      searchInput.focus();
+    });
+  });
+
+  // Hide search options dropdown when clicked outside of it
+  document.addEventListener('click', function(event) {
+    const dropdown = document.querySelector('.dropdown-menu');
+    if (dropdown.classList.contains('show') && !dropdown.contains(event.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+
+  // Clear search input and suggestions
+  searchInput.value = '';
+  searchSuggestions.innerHTML = '';
+
+  // Hide search suggestions
+  searchSuggestions.classList.remove('show');
+
+  // Remove selected option class from search bar
+  document.querySelector('.search-bar').classList.remove(link.dataset.type);
+
+
+  // Fetch data from the server and display search suggestions
+  searchInput.addEventListener('input', function() {
+    const query = this.value;
+    if (query.trim().length > 0) {
+      fetch('/search?q=' + query)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length > 0) {
+            searchSuggestions.innerHTML = '';
+            data.forEach(item => {
+              const li = document.createElement('li');
+              li.classList.add('list-group-item');
+              li.textContent = item.name;
+              searchSuggestions.appendChild(li);
+            });
+            searchSuggestions.classList.add('show');
+          } else {
+            searchSuggestions.innerHTML = '<li class="list-group-item">No results found</li>';
+            searchSuggestions.classList.add('show');
+          }
+        })
+        .catch(error => console.error(error));
+    } else {
+      searchSuggestions.innerHTML = '';
+      searchSuggestions.classList.remove('show');
+    }
+  });
+
+  // Add submit event listener to search form
+  document.querySelector('.search-bar form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get selected option class from search bar
+    const searchType = document.querySelector('.search-bar').classList[1];
+
+    // Get search query
+    const searchQuery = searchInput.value.trim();
+
+    // Redirect to search results page with selected option and query parameters
+    window.location.href = '/search?type=' + searchType + '&q=' + searchQuery;
+  });
+</script>

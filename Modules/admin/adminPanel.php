@@ -1,49 +1,124 @@
+<!-- Navigation Bar -->
+<!DOCTYPE html>
+<html lang="en">
 
-  <!-- Navigation Bar -->
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/admin.css">
-  </head>
-  <body>
-  <?php require_once  './components/navbar.php'; ?>
-  <?php require_once  'sidebar.php'; ?>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Dashboard</h1>
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-          <button class="btn btn-sm btn-outline-secondary">Share</button>
-          <button class="btn btn-sm btn-outline-secondary">Export</button>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <style>
+    .main-container {
+
+      display: flex;
+    }
+
+    .link-container {
+
+      background-color: antiquewhite;
+      /* height: 100%; */
+      /* overflow: scroll; */
+    }
+
+    .sidebar {
+      /* position: fixed; */
+      top: 6px;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 48px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    a {
+      color: aliceblue;
+    }
+
+    a:hover {
+      color: rgb(186, 184, 184);
+    }
+
+    table {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+    }
+
+    thead th {
+      background-color: #941818 !important;
+      color: #fff;
+    }
+
+    .table-icon {
+      margin-right: 5px;
+    }
+
+    .table-icon i {
+      color: #dc3545;
+    }
+
+    tbody tr:nth-of-type(odd) {
+      background-color: #f8f9fa;
+    }
+
+    .action-icons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-icons a {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <?php require_once './components/navbar.php'; ?>
+
+  <div class="container-fluid">
+    <div class="row">
+      <?php require_once 'sidebar.php'; ?>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+              <button class="btn btn-sm btn-outline-secondary">Share</button>
+              <button class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              This week
+            </button>
+          </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <span data-feather="calendar"></span>
-          This week
-        </button>
-      </div>
-    </div>
-    <?php
-    $link = isset($_GET['link']) ? $_GET['link'] : 'dashboard';
-    if ($link == 'dashboard') {
-      require_once 'dashboard.php';
-    } elseif ($link == 'checkStock') {
-      require_once 'checkStock.php';
-    } elseif ($link == 'donationRequest') {
-      require_once 'donationRequest.php';
-    }
-    elseif ($link == 'donationForm') {
-      require_once './components/donationForm.php';
-    }
+        <div class="container link-container">
+          <?php
+          $link = isset($_GET['link']) ? $_GET['link'] : 'dashboard';
+          if ($link == 'dashboard') {
+            require_once 'dashboard.php';
+          } elseif ($link == 'bloodStock') {
+            require_once 'bloodStock.php';
+          } elseif ($link == 'donationRequest') {
+            require_once 'donationRequest.php';
+          } elseif ($link == 'donationForm') {
+            require_once './components/donationForm.php';
+          }
 
-    ?>
-  </body>
-  </html>
- 
-    <!-- 
+          ?>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<!-- 
 <!-- 
 <!-- 
    

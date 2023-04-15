@@ -13,7 +13,7 @@ class BloodManagement
         $this->conn = new DataSource();
     }
 
-    function insertStock(
+    function acceptReq(
         $stock_id,
         $donation_id,
         $blood_group,
@@ -67,7 +67,7 @@ class BloodManagement
         return $response;
     }
 
-    function deleteStock($donorID)
+    function RejectReq($donorID)
     {
         // Check if record with given stock_id exists in blood_stock table
         $query = "SELECT * FROM blood_donation WHERE donation_id = ?";
@@ -106,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inserDonor = new BloodManagement;
 
     $response = $data['method'] === 'reject'
-        ? $inserDonor->deleteStock($data['donation_id'])
-        : $inserDonor->insertStock(
+        ? $inserDonor->RejectReq($data['donation_id'])
+        : $inserDonor->acceptReq(
             $data['stock_id'],
             $data['donation_id'],
             $data['blood_group'],

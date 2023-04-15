@@ -30,7 +30,7 @@ if (!$checkAuth->checkAuth()) {
 </head>
 <body>
   <?php
-  echo require_once('./Modules/admin/adminPanel.php');
+  echo require_once('./Modules/users/userPanel.php');
   ?>
 
 
