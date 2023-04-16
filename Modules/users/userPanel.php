@@ -8,10 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* Define a red color scheme */
         :root {
             --primary-color: #d32f2f;
             --text-color: #333;
+        }
+
+
+        #changing-bg {
+
+            /* content: ''; */
+            position: absolute;
+            background: url('./Modules/users/images/Blood3.jpg');
+            z-index: -1;
+            height: 645px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 50%;
+            transition: all 1.3s;
+            /* background-color: blueviolet; */
+        }
+
+        .container h1 {
+            margin-bottom: 1.5rem !important;
+            color: #251717ba;
+            font-weight: 700;
+            font-family: math;
+        }
+
+        /* #services{
+
+            padd
+        } */
+        p.sub-title {
+            font-size: 16px;
+            color: #a93636;
+            font-weight: 700;
+            font-family: monospace;
         }
 
         /* Add box shadow and hover effects */
@@ -52,56 +85,251 @@
             background-color: #b71c1c;
             border-color: #b71c1c;
         }
+
+        .small-card {
+            border: 1px solid lightgrey;
+            /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
+            padding: 30px 15px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease-in-out;
+            height: 100%;
+        }
+
+        .small-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .small-card .animated-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            background-color: #d32f2f;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .small-card .animated-icon:hover {
+            transform: rotate(360deg);
+        }
+
+        .small-card .animated-icon span {
+            color: #fff;
+        }
+
+        .small-card .card-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .small-card .card-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .custom-map-container{
+            height:400px;
+            width:100%;
+        }
+        
     </style>
 </head>
 
 <body>
-    
+
     <?php
- require_once './components/navbar.php';
+    require_once './components/navbar.php';
+    ?>
+    <div id="changing-bg">
+
+    </div>
+    <section id='main-section' class=" py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 text-center">
+                    <h1 class="display-4 mb-4">Blood Management System</h1>
+                    <p class="sub-title">Be a Lifesaver Donate Blood Today, <br>
+                        Your Donation Can Save Lives ,<br>
+                        One Pint of Blood Can Save Three Lives Donate Today</p>
+                    <div class="d-flex justify-content-around my-5">
+                        <div class="card col-sm-4 mx-2">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-tint"></i> Collected</h5>
+                                <p class="card-text">10,000+ Bags</p>
+                            </div>
+                        </div>
+                        <div class="card col-sm-4 mx-2">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-hand-holding-heart"></i> Monthly Donations</h5>
+                                <p class="card-text">$5,000+</p>
+                            </div>
+                        </div>
+                        <div class="card col-sm-4 mx-2">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-heartbeat"></i> Lives Saved</h5>
+                                <p class="card-text">2,500+</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-danger btn-lg mr-3">
+                            <i class="fas fa-heart"></i> Donate Now
+                        </a>
+                        <a href="#" class="btn btn-danger btn-lg mr-3">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 d-flex align-items-center mr">
+                    <img src="./Modules/users/images/Blood3.jpg" class="img-fluid" alt="Blood Donation">
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class=" py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Our Services</h2>
+                    <p class="section-subheading text-muted">We provide a range of blood management services to help you save lives.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class=" small-card text-center">
+                        <div class="animated-icon">
+                            <span class="fas fa-users fa-3x"></span>
+                        </div>
+                        <h4 class="card-title">Donor Management</h4>
+                        <p class="card-text">Manage and track blood donations from donors, including donor information and blood type.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class=" small-card text-center">
+                        <div class="animated-icon">
+                            <span class="fas fa-user fa-3x"></span>
+                        </div>
+                        <h4 class="card-title">Recipient Management</h4>
+                        <p class="card-text">Manage and track blood transfusions to recipients, including recipient information and blood type.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class=" small-card text-center">
+                        <div class="animated-icon">
+                            <span class="fas fa-briefcase-medical fa-3x"></span>
+                        </div>
+                        <h4 class="card-title">Inventory Management</h4>
+                        <p class="card-text">Track and manage blood inventory, including blood type, quantity, and expiration dates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <h2><i class="fas fa-envelope-open-text text-danger"></i> Contact Us</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user text-danger"></i> Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope text-danger"></i> Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone text-danger"></i> Phone:</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment-dots text-danger"></i> Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit</button>
+        </form>
+    </div>
+    <div class="custom-map-container">
+        <iframe class="custom-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
 
+    <?php
 
+    use DataSource\DataSource;
 
+    require_once __DIR__ . '../../../lib/DataSource.php';
 
-use DataSource\DataSource;
+    $con = new DataSource;
+    $query = 'SELECT * from   blood_donation where request_status="approved" ';
+    $paramType = 's';
+    $paramArray = array();
+    $bloodPosts = $con->select($query, $paramType, $paramArray);
 
-require_once __DIR__ . '../../../lib/DataSource.php';
+    if (!empty($bloodPosts)) {
 
-$con = new DataSource;
-$query = 'SELECT * from   blood_donation where request_status="approved" ';
-$paramType = 's';
-$paramArray = array();
-$bloodPosts = $con->select($query, $paramType, $paramArray);
+        echo '<div class="container-fluid">';
+        echo '<div class="row">';
 
-if (!empty($bloodPosts)) {
+        foreach ($bloodPosts as $Post) {
 
-    echo '<div class="container-fluid">';
-    echo '<div class="row">';
+            echo '<div class="col-md-4 col-lg-3 mb-4">';
+            echo '<div class="card h-100">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title"><i class="fas fa-user"></i> ' . $Post['donor_name'] . '</h5>';
+            echo '<p class="card-text"><i class="fas fa-calendar-alt"></i> ' . $Post['age'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-map-marker-alt"></i> ' . $Post['location'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['blood_group'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['quantity'] . '(ml)</p>';
+            echo '<a href="#" class="btn btn-primary">Contat Donor</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
 
-    foreach ($bloodPosts as $Post) {
-
-        echo '<div class="col-md-4 col-lg-3 mb-4">';
-        echo '<div class="card h-100">';
-        echo '<div class="card-body">';
-        echo '<h5 class="card-title"><i class="fas fa-user"></i> '.$Post['donor_name'].'</h5>';
-        echo '<p class="card-text"><i class="fas fa-calendar-alt"></i> '.$Post['age'].'</p>';
-        echo '<p class="card-text"><i class="fas fa-map-marker-alt"></i> '.$Post['location'].'</p>';
-        echo '<p class="card-text"><i class="fas fa-tint"></i> '.$Post['blood_group'].'</p>';
-        echo '<p class="card-text"><i class="fas fa-tint"></i> '.$Post['quantity'].'(ml)</p>';
-        echo '<a href="#" class="btn btn-primary">Contat Donor</a>';
         echo '</div>';
         echo '</div>';
-        echo '</div>';
+    } else {
+        echo "<strong>No requests</strong>";
     }
-
-    echo '</div>';
-    echo '</div>';
-
-} else {
-    echo "<strong>No requests</strong>";
-}
-?>
+    ?>
 </body>
+<script>
+    const changingBack = document.getElementById('changing-bg');
+    console.log(changingBack);
+
+    let bg_images = [
+        // './Modules/users/images/bg-heart.png',
+        './Modules/users/images/Blood2.jpg',
+        // './Modules/users/images/bg-1.png',
+        './Modules/users/images/bg-3.jpg',
+        // './Modules/users/images/bg-4.jpg',
+        // './Modules/users/images/bg-4.jpg',
+        // './Modules/users/images/bg-2.png',
+        './Modules/users/images/Blood3.jpg',
+
+        './Modules/users/images/Blood4.jpg',
+        './Modules/users/images/Blood5.jpg'
+
+    ]
+    let count = 0;
+    setInterval(() => {
+        if (count < 5) {
+
+            changingBack.style.background = `url(${bg_images[count]}) center center/cover`;
+
+        } else {
+
+            count = 0;
+        }
+        count++;
+        console.log(count)
+
+    }, 4000);
+</script>
 
 </html>

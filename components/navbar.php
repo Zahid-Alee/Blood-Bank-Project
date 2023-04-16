@@ -8,7 +8,13 @@
     margin-left: 1rem;
     margin-right: 1rem;
   }
+  .nav-item a{
+    color:rgb(0 0 0 / 73%) !important;
+  }
+.nav-item a:hover {
 
+  color:red !important;
+}
   .navbar-toggler {
     border: none;
   }
@@ -25,52 +31,6 @@
     }
   }
 
-  .search-bar {
-    position: relative;
-  }
-
-  .search-bar input[type="search"] {
-    width: 200px;
-    border: none;
-    border-bottom: 2px solid transparent;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .search-bar input[type="search"]:focus {
-    width: 300px;
-    border-bottom: 2px solid red;
-  }
-
-  .search-suggestions {
-    display: none;
-    position: absolute;
-    top: 38px;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    list-style: none;
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-  }
-
-  .search-suggestions li {
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  .search-suggestions li:hover {
-    background-color: #f2f2f2;
-  }
-
-  .search-suggestions li.active {
-    background-color: #ddd;
-  }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Logo</a>
