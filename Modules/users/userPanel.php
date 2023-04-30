@@ -13,10 +13,8 @@
             --text-color: #333;
         }
 
-
         #changing-bg {
 
-            /* content: ''; */
             position: absolute;
             background: url('./Modules/users/images/Blood3.jpg');
             z-index: -1;
@@ -26,7 +24,6 @@
             left: 0;
             opacity: 50%;
             transition: all 1.3s;
-            /* background-color: blueviolet; */
         }
 
         .container h1 {
@@ -36,10 +33,7 @@
             font-family: math;
         }
 
-        /* #services{
 
-            padd
-        } */
         p.sub-title {
             font-size: 16px;
             color: #a93636;
@@ -130,21 +124,112 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        .custom-map-container{
-            height:400px;
-            width:100%;
+
+        .custom-map-container {
+            height: 400px;
+            width: 100%;
         }
-        
+
+
+        /* The modal (background) */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .popup-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+        }
+
+        .popup-header {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-donation,
+        .close-request {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-donation:hover,
+        .close-request:hover .close-donation:focus,
+        .close-request:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+
+        }
+
+        .popup-body {
+            padding: 10px 0;
+            overflow-y: scroll;
+        }
+
+        .popup-footer {
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 767px) {
+            .modal-dialog {
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .modal-dialog {
+                margin: 30px auto;
+                max-width: 600px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <?php
-    require_once './components/navbar.php';
-    ?>
     <div id="changing-bg">
-
     </div>
     <section id='main-section' class=" py-5">
         <div class="container">
@@ -174,63 +259,46 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-danger btn-lg mr-3">
+                        <button id='openModalBtn' class="donate-now-btn btn btn-danger btn-lg mr-3" data-toggle="modal" data-target="#exampleModalLong">
                             <i class="fas fa-heart"></i> Donate Now
-                        </a>
-                        <a href="#" class="btn btn-danger btn-lg mr-3">
+                        </button>
+                        <button href="#" class="btn btn-danger btn-lg mr-3">
                             <i class="fas fa-info-circle"></i> Learn More
-                        </a>
-                    </div>
-                </div>
-                <!-- <div class="col-md-6 d-flex align-items-center mr">
-                    <img src="./Modules/users/images/Blood3.jpg" class="img-fluid" alt="Blood Donation">
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class=" py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Our Services</h2>
-                    <p class="section-subheading text-muted">We provide a range of blood management services to help you save lives.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class=" small-card text-center">
-                        <div class="animated-icon">
-                            <span class="fas fa-users fa-3x"></span>
-                        </div>
-                        <h4 class="card-title">Donor Management</h4>
-                        <p class="card-text">Manage and track blood donations from donors, including donor information and blood type.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class=" small-card text-center">
-                        <div class="animated-icon">
-                            <span class="fas fa-user fa-3x"></span>
-                        </div>
-                        <h4 class="card-title">Recipient Management</h4>
-                        <p class="card-text">Manage and track blood transfusions to recipients, including recipient information and blood type.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class=" small-card text-center">
-                        <div class="animated-icon">
-                            <span class="fas fa-briefcase-medical fa-3x"></span>
-                        </div>
-                        <h4 class="card-title">Inventory Management</h4>
-                        <p class="card-text">Track and manage blood inventory, including blood type, quantity, and expiration dates.</p>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <?php echo require_once('./Modules/users/services.php') ?>
+
+    <div id="donation-popup" class="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>Donate Blood Form</h2>
+                <span class="close-donation">&times;</span>
+            </div>
+            <div class="popup-body">
+                <?php echo require_once('./components/donationForm.php') ?>
+            </div>
+
+        </div>
+    </div>
+    <div id="request-popup" class="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>Request Blood From </h2>
+                <span class="close-request">&times;</span>
+            </div>
+            <div class="popup-body">
+                <?php echo require_once('./Modules/users/requestForm.php') ?>
+
+            </div>
+
+        </div>
+    </div>
+
     <div class="container">
         <h2><i class="fas fa-envelope-open-text text-danger"></i> Contact Us</h2>
         <form action="#" method="post">
@@ -285,7 +353,7 @@
             echo '<p class="card-text"><i class="fas fa-map-marker-alt"></i> ' . $Post['location'] . '</p>';
             echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['blood_group'] . '</p>';
             echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['quantity'] . '(ml)</p>';
-            echo '<a href="#" class="btn btn-primary">Contat Donor</a>';
+            echo '<a href="#" class="btn btn-primary request-blood-btn">Request Blood</a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -297,25 +365,27 @@
         echo "<strong>No requests</strong>";
     }
     ?>
+
 </body>
 <script>
     const changingBack = document.getElementById('changing-bg');
-    console.log(changingBack);
+    const donationBtn = document.getElementById("openModalBtn");
+    const requestBtn = document.querySelectorAll('.request-blood-btn')
+    const donationPopUp = document.getElementById("donation-popup");
+    const requestPopup = document.getElementById("request-popup")
+    const closeDonBtn = document.querySelector(".close-donation");
+    const closeReqBtn = document.querySelector(".close-request")
+
 
     let bg_images = [
-        // './Modules/users/images/bg-heart.png',
         './Modules/users/images/Blood2.jpg',
-        // './Modules/users/images/bg-1.png',
         './Modules/users/images/bg-3.jpg',
-        // './Modules/users/images/bg-4.jpg',
-        // './Modules/users/images/bg-4.jpg',
-        // './Modules/users/images/bg-2.png',
         './Modules/users/images/Blood3.jpg',
-
         './Modules/users/images/Blood4.jpg',
         './Modules/users/images/Blood5.jpg'
 
     ]
+
     let count = 0;
     setInterval(() => {
         if (count < 5) {
@@ -327,9 +397,23 @@
             count = 0;
         }
         count++;
-        console.log(count)
 
     }, 4000);
+
+    donationBtn.onclick = function() {
+        donationPopUp.style.display = "block";
+    }
+    closeDonBtn.onclick = function() {
+        donationPopUp.style.display = "none";
+    }
+    requestBtn.forEach((reqBtn => {
+        reqBtn.addEventListener('click', () => {
+            requestPopup.style.display = 'block'
+        })
+    }))
+    closeReqBtn.onclick = function() {
+        requestPopup.style.display = "none";
+    }
 </script>
 
 </html>

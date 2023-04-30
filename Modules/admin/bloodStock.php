@@ -8,7 +8,7 @@
             <th scope="col" class='text-center'><i class="fas fa-map-marker-alt"></i> date</th>
 
             <th scope="col" class='text-center'><i class="fas fa-map-marker-alt"></i> Location</th>
-            
+
 
             <th scope="col" class='text-center'><i class="fas fa-cog"></i>
                 Action</th>
@@ -46,7 +46,7 @@
                         <span class="table-icon"></span>
                         <?php echo $stock['blood_group']; ?>
                     </td>
-                    
+
                     <td>
                         <span class="table-icon"><i class="fas fa-tint"></i></span>
                         <?php echo $stock['donation_date']; ?>
@@ -57,7 +57,8 @@
                     </td>
                     <td class='text-center'>
 
-                        <span class="table-icon text-danger px-2" onclick="deleteStock('<?php $id=$stock['stock_id'];echo $id;  ?>')"><i class="fas fa-times"></i></span>
+                        <span class="table-icon text-danger px-2" onclick="deleteStock('<?php $id = $stock['stock_id'];
+                                                                                        echo $id;  ?>')"><i class="fas fa-times"></i></span>
                     </td>
                 </tr>
         <?php
@@ -73,27 +74,26 @@
     // let method, result;
 
     const deleteStock = async (stock_id) => {
-  const stockID = {
-    stock_id: stock_id
-  };
-  console.log(stockID);
+        const stockID = {
+            stock_id: stock_id
+        };
+        //   console.log(stockID);
 
-  fetch('Model/handleStock.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(stockID)
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log('Success:', data);
-      // handle success response here
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      // handle error response here
-    });
-}
-
+        fetch('Model/handleStock.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(stockID)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Success:', data);
+                // handle success response here
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // handle error response here
+            });
+    }
 </script>

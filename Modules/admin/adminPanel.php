@@ -15,10 +15,8 @@
     }
 
     .link-container {
-
-      background-color: antiquewhite;
-      /* height: 100%; */
-      /* overflow: scroll; */
+      height: 70%;
+      overflow-y: scroll;
     }
 
     .sidebar {
@@ -29,11 +27,10 @@
       z-index: 100;
       padding: 48px 0 0;
       box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      height: 100%;
+
     }
 
-    a {
-      color: aliceblue;
-    }
 
     a:hover {
       color: rgb(186, 184, 184);
@@ -82,7 +79,8 @@
     <div class="row">
       <?php require_once 'sidebar.php'; ?>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Dashboard</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
@@ -106,6 +104,8 @@
             require_once 'donationRequest.php';
           } elseif ($link == 'donationForm') {
             require_once './components/donationForm.php';
+          } elseif ($link == 'bloodRequest') {
+            require_once 'bloodRequest.php';
           }
 
           ?>

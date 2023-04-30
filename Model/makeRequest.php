@@ -3,7 +3,8 @@
 use DataSource\DataSource;
 
 
-class BloodManagement{
+class BloodManagement
+{
     private $conn;
 
     function __construct()
@@ -12,45 +13,37 @@ class BloodManagement{
         $this->conn = new DataSource();
     }
 
-    function insertDonor(){
+    function makeReq()
+    {
 
-        $query = 'INSERT INTO blood_donation (donation_id,donor_name,age, blood_group, last_donated_date, quantity,contact_no, email, location) VALUES(?,?,?,?,?,?,?,?,?)';
-        $paramType = 'sssssssss';
+        $query = 'INSERT INTO blood_requests (request_id,hospital_name, blood_group, quantity, location,contact_no) VALUES(?,?,?,?,?,?)';
+        $paramType = 'ssssss';
         $paramValue = array(
-            $_POST["donation_id"],
-            $_POST["donor_name"],
-            $_POST["age"],
+            $_POST["request_id"],
+            $_POST["hospital_name"],
             $_POST["blood_group"],
-            $_POST["last_donated_date"],
             $_POST["quantity"],
-            $_POST["contact_no"],
-            $_POST["email"],
             $_POST["location"],
+            $_POST["contact_no"],
         );
         $donorID = $this->conn->insert($query, $paramType, $paramValue);
-        if (! empty($donorID)) {
+        if (!empty($donorID)) {
             $response = array(
                 "status" => "success",
                 "message" => "You have registered successfully."
             );
-
- 
-}
-    return $response;
-
+        }
+        return $response;
     }
-
 }
 
-if($_POST){
+if ($_POST) {
 
     $data = $_POST;
     print_r($data);
 
-    $newDonor =
- new BloodManagement;
+    $newBloodReq =
+        new BloodManagement;
 
- $newDonor->insertDonor();
-   };
-
-?>
+    $newBloodReq->makeReq();
+};

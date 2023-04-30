@@ -134,7 +134,6 @@ class DataSource
     return $insertId;
 }
 
-    
         /**
      * To update
      *
@@ -188,7 +187,6 @@ class DataSource
         }
         $stmt->execute();
     }
-
     /**
      * 1.
      * Prepares parameter binding
