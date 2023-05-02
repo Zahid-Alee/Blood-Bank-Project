@@ -57,10 +57,10 @@
         <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign up</a>
+        <!-- <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign up</a> -->
       </li>
     </ul>
 

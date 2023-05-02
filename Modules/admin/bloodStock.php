@@ -21,7 +21,7 @@
             require_once __DIR__ . '../../../lib/DataSource.php';
 
             $con = new DataSource;
-            $query = 'SELECT blood_stock.blood_group,blood_stock.quantity,blood_stock.location,blood_stock.donation_id ,donor_name,donation_date from blood_stock inner join blood_donation on
+            $query = 'SELECT blood_stock.stock_id, blood_stock.blood_group,blood_stock.quantity,blood_stock.location,blood_stock.donation_id ,donor_name,donation_date from blood_stock inner join blood_donation on
             blood_stock.donation_id = blood_donation.donation_id';
             $paramType = 's';
             $paramArray = array();
@@ -57,8 +57,7 @@
                     </td>
                     <td class='text-center'>
 
-                        <span class="table-icon text-danger px-2" onclick="deleteStock('<?php $id = $stock['stock_id'];
-                                                                                        echo $id;  ?>')"><i class="fas fa-times"></i></span>
+                        <span class="table-icon text-danger px-2" onclick="deleteStock('<?php echo $stock['stock_id'] ?>')"><i class="fas fa-times"></i></span>
                     </td>
                 </tr>
         <?php
@@ -89,11 +88,9 @@
             .then(response => response.text())
             .then(data => {
                 console.log('Success:', data);
-                // handle success response here
             })
             .catch((error) => {
                 console.error('Error:', error);
-                // handle error response here
             });
     }
 </script>

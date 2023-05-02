@@ -29,7 +29,6 @@
 
             foreach ($stocks as $stock) {
 
-
         ?>
                 <tr>
                     <th scope="row" class='text-center'>

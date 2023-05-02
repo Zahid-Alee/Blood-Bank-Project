@@ -1,22 +1,24 @@
 <?php
+
 use DataSource\user;
-if (! empty($_POST["signup-btn"])) {
-    require_once './Model/user.php';
-    $user = new user();
-    $registrationResponse = $user->registeruser();
+
+if (!empty($_POST["signup-btn"])) {
+	require_once './Model/user.php';
+	$user = new user();
+	$registrationResponse = $user->registeruser();
 }
 ?>
 <HTML>
 <HEAD>
 <TITLE>User Registration</TITLE>
-<link href="assets/css/DataSource-style.css" type="text/css"
+<link href="assets/css/phppot-style.css" type="text/css"
 	rel="stylesheet" />
 <link href="assets/css/user-registration.css" type="text/css"
 	rel="stylesheet" />
 <script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 </HEAD>
 <BODY>
-	<div class="DataSource-container">
+	<div class="phppot-container">
 		<div class="sign-up-container">
 			<div class="login-signup">
 				<a href="index.php">Login</a>
