@@ -1,8 +1,6 @@
 <?php
 
 use DataSource\DataSource;
-
-
 class BloodManagement
 {
     private $conn;

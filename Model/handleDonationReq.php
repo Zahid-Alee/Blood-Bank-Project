@@ -18,40 +18,36 @@ class BloodManagement
         $donation_id,
         $blood_group,
         $quantity,
-        $location,
         $requestStatus
     ) {
         // Check if donation_id already exists in blood_stock table
-        $query = 'SELECT * FROM blood_stock WHERE donation_id = ?';
+        $query = 'SELECT * FROM blood_stock WHERE blood_group = ?';
         $paramType = 's';
-        $paramValue = array($donation_id);
+        $paramValue = array($blood_group);
         $result = $this->conn->select($query, $paramType, $paramValue);
 
-        // If donation_id exists, update quantity and return success message
+        // If bloo_group exists, update quantity and return success message
         if (!empty($result)) {
             $updatedQuantity = $result[0]['quantity'] + $quantity;
-            $query = 'UPDATE blood_stock SET quantity = ? WHERE donation_id = ?';
+            $query = 'UPDATE blood_stock SET quantity = ? WHERE blood_group = ?';
             $paramType = 'ss';
-            $paramValue = array($updatedQuantity, $donation_id);
+            $paramValue = array($updatedQuantity, $blood_group);
             $this->conn->update($query, $paramType, $paramValue);
         }
         // If donation_id does not exist, insert new record and return success message
         else {
-            $query = 'INSERT INTO blood_stock (stock_id,donation_id, blood_group,quantity,location) VALUES(?,?,?,?,?)';
-            $paramType = 'sssss';
+            $query = 'INSERT INTO blood_stock (stock_id, blood_group,quantity) VALUES(?,?,?)';
+            $paramType = 'sss';
             $paramValue = array(
                 $stock_id,
-                $donation_id,
                 $blood_group,
                 $quantity,
-                $location
             );
             $stockID = $this->conn->insert($query, $paramType, $paramValue);
         }
         $query = 'UPDATE blood_donation SET request_status = ? WHERE donation_id = ?';
         $paramType = 'ss';
         $paramValue = array($requestStatus, $donation_id);
-
         $updatedID = $this->conn->update(
             $query,
             $paramType,
@@ -101,18 +97,17 @@ class BloodManagement
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
-    print_r($data);
+    // print_r($data);
 
-    $inserDonor = new BloodManagement;
+    $insertDonor = new BloodManagement;
 
     $response = $data['method'] === 'reject'
-        ? $inserDonor->RejectReq($data['donation_id'])
-        : $inserDonor->acceptReq(
+        ? $insertDonor->RejectReq($data['donation_id'])
+        : $insertDonor->acceptReq(
             $data['stock_id'],
             $data['donation_id'],
             $data['blood_group'],
             $data['quantity'],
-            $data['location'],
             $data['request_status']
         );
 

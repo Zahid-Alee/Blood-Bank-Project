@@ -130,7 +130,6 @@
             width: 100%;
         }
 
-
         /* The modal (background) */
         .popup {
             display: none;
@@ -298,8 +297,54 @@
 
         </div>
     </div>
+    <!-- <div class="custom-map-container">
+        <iframe class="custom-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div> -->
 
-    <div class="container">
+
+    <?php
+
+    use DataSource\DataSource;
+
+    require_once __DIR__ . '../../../lib/DataSource.php';
+
+    $con = new DataSource;
+    $query = 'SELECT * from   blood_donation where request_status="approved" ';
+    $paramType = 's';
+    $paramArray = array();
+    $bloodPosts = $con->select($query, $paramType, $paramArray);
+
+    if (!empty($bloodPosts)) {
+
+        echo '<div class="container-fluid">';
+        echo '<h2 class="heading">Blood Donations</h2>';
+        echo '<div class="row">';
+
+        foreach ($bloodPosts as $Post) {
+
+            echo '<div class="col-md-4 col-lg-3 mb-4">';
+            echo '<div class="card h-100">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title"><i class="fas fa-user"></i> ' . $Post['donor_name'] . '</h5>';
+            echo '<p class="card-text"><i class="fas fa-calendar-alt"></i> ' . $Post['age'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-map-marker-alt"></i> ' . $Post['location'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['blood_group'] . '</p>';
+            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['quantity'] . '(ml)</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+        echo '<a href="#" class="btn btn-primary request-blood-btn">Request Blood</a>';
+
+        echo '</div>';
+    } else {
+        echo "<strong>No requests</strong>";
+    }
+    ?>
+
+<div class="container">
         <h2><i class="fas fa-envelope-open-text text-danger"></i> Contact Us</h2>
         <form action="#" method="post">
             <div class="form-group">
@@ -321,50 +366,163 @@
             <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit</button>
         </form>
     </div>
-    <div class="custom-map-container">
-        <iframe class="custom-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!-- Footer -->
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
     </div>
+    <!-- Left -->
 
+    <!-- Right -->
+    <div>
+    <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
 
-    <?php
+      <!-- Twitter -->
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
 
-    use DataSource\DataSource;
+      <!-- Google -->
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #dd4b39;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-google"></i
+      ></a>
 
-    require_once __DIR__ . '../../../lib/DataSource.php';
+      <!-- Instagram -->
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #ac2bac;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
 
-    $con = new DataSource;
-    $query = 'SELECT * from   blood_donation where request_status="approved" ';
-    $paramType = 's';
-    $paramArray = array();
-    $bloodPosts = $con->select($query, $paramType, $paramArray);
+      <!-- Linkedin -->
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #333333;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
 
-    if (!empty($bloodPosts)) {
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3 text-secondary"></i>Company name
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
 
-        echo '<div class="container-fluid">';
-        echo '<div class="row">';
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Laravel</a>
+          </p>
+        </div>
+        <!-- Grid column -->
 
-        foreach ($bloodPosts as $Post) {
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
 
-            echo '<div class="col-md-4 col-lg-3 mb-4">';
-            echo '<div class="card h-100">';
-            echo '<div class="card-body">';
-            echo '<h5 class="card-title"><i class="fas fa-user"></i> ' . $Post['donor_name'] . '</h5>';
-            echo '<p class="card-text"><i class="fas fa-calendar-alt"></i> ' . $Post['age'] . '</p>';
-            echo '<p class="card-text"><i class="fas fa-map-marker-alt"></i> ' . $Post['location'] . '</p>';
-            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['blood_group'] . '</p>';
-            echo '<p class="card-text"><i class="fas fa-tint"></i> ' . $Post['quantity'] . '(ml)</p>';
-            echo '<a href="#" class="btn btn-primary request-blood-btn">Request Blood</a>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        }
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3 text-secondary"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope me-3 text-secondary"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
 
-        echo '</div>';
-        echo '</div>';
-    } else {
-        echo "<strong>No requests</strong>";
-    }
-    ?>
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<!-- Footer -->
 
 </body>
 <script>
@@ -377,28 +535,28 @@
     const closeReqBtn = document.querySelector(".close-request")
 
 
-    let bg_images = [
-        './Modules/users/images/Blood2.jpg',
-        './Modules/users/images/bg-3.jpg',
-        './Modules/users/images/Blood3.jpg',
-        './Modules/users/images/Blood4.jpg',
-        './Modules/users/images/Blood5.jpg'
+    // let bg_images = [
+    //     './Modules/users/images/Blood2.jpg',
+    //     './Modules/users/images/bg-3.jpg',
+    //     './Modules/users/images/Blood3.jpg',
+    //     './Modules/users/images/Blood4.jpg',
+    //     './Modules/users/images/Blood5.jpg'
 
-    ]
+    // ]
 
-    let count = 0;
-    setInterval(() => {
-        if (count < 5) {
+    // let count = 0;
+    // setInterval(() => {
+    //     if (count < 5) {
 
-            changingBack.style.background = `url(${bg_images[count]}) center center/cover`;
+    //         changingBack.style.background = `url(${bg_images[count]}) center center/cover`;
 
-        } else {
+    //     } else {
 
-            count = 0;
-        }
-        count++;
+    //         count = 0;
+    //     }
+    //     count++;
 
-    }, 4000);
+    // }, 4000);
 
     donationBtn.onclick = function() {
         donationPopUp.style.display = "block";

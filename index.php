@@ -13,12 +13,12 @@ if (!$checkAuth->checkAuth()) {
   $username = $_SESSION["username"];
   $role = $_SESSION["role"];
   session_cache_limiter('nocache');
-  
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,13 +37,12 @@ if (!$checkAuth->checkAuth()) {
     echo require_once('../BBM/components/navbar.php');
 
     echo require_once('./Modules/users/userPanel.php');
-  } elseif($role==='admin') {
+  } elseif ($role === 'admin') {
 
     echo require_once('../BBM/components/navbar.php');
 
     echo require_once('./Modules/admin/adminPanel.php');
-  }
-  else{
+  } else {
     echo 'not  Allowed';
   }
   ?>

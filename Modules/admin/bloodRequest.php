@@ -8,7 +8,6 @@
             <th scope="col" class='text-center'><i class="fas fa-birthday-cake"></i>
                 Requested Date</th>
             <th scope="col" class='text-center'><i class="fas fa-map-marker-alt"></i> Location</th>
-
             <th scope="col" class='text-center'><i class="fas fa-cog"></i>
                 Action</th>
         </tr>
@@ -24,39 +23,42 @@
         $query = 'SELECT * from blood_requests where request_status= "pending"';
         $paramType = 's';
         $paramArray = array();
-        $stocks = $con->select($query, $paramType, $paramArray);
-        if (!empty($stocks)) {
+        $requests = $con->select($query, $paramType, $paramArray);
+        if (!empty($requests)) {
 
-            foreach ($stocks as $stock) {
+            foreach ($requests as $request) {
 
         ?>
                 <tr>
                     <th scope="row" class='text-center'>
-                        <?php echo $stock['hospital_name']; ?>
+                        <?php echo $request['hospital_name']; ?>
                     </th>
                     <td>
                         <span class="table-icon"></span>
-                        <?php echo $stock['quantity']; ?>
+                        <?php echo $request['quantity']; ?>
                     </td>
                     <td>
                         <span class="table-icon"><i class="fas fa-tint"></i></span>
-                        <?php echo $stock['blood_group']; ?>
+                        <?php echo $request['blood_group']; ?>
                     </td>
                     <td>
                         <span class="table-icon"></span>
-                        <?php echo $stock['request_date']; ?>
+                        <?php echo $request['request_date']; ?>
 
                     </td>
                     <td>
                         <span class="table-icon"></span>
-                        <?php echo substr($stock['location'], 0, 20) . '....'; ?>
+                        <?php echo substr($request['location'], 0, 20) . '....'; ?>
                     </td>
                     <td class='text-center'>
-                        <span class="table-icon text-success px-2" onclick="acceptReq('<?php echo $stock['donation_id'] ?>')"><i class="fas fa-check"></i></span>
+                        <?php
+                        $reqID = $request['request_id'];
+                        $quantityReq = $request['quantity'];
+                        $blood_group = $request['blood_group'];
+                        ?>
+                        <span class="table-icon text-success px-2" onclick="acceptReq('<?php echo $reqID ?>','<?php echo $quantityReq ?>','<?php echo $blood_group ?>')"><i class="fas fa-check"></i></span>
                         <!-- -->
-                        <span class="table-icon text-danger px-2" onclick="rejReq('<?php echo $stock['donation_id'] ?>')"><i class="fas fa-times"></i></span>
-
-
+                        <span class="table-icon text-danger px-2" onclick="rejReq('<?php echo $reqID ?>')"><i class="fas fa-times"></i></span>
                     </td>
                 </tr>
         <?php
@@ -68,22 +70,29 @@
     </tbody>
 </table>
 <script>
-    let method, result;
-    const acceptReq = async (data, stockID) => {
-        Object.assign(data, {
-            stock_id: stockID,
-            method: ' accept',
-            request_status: 'approved'
-        });
-
-        result = await postReq(data);
-        location.reload()
+    let method, result, data;
+    const acceptReq = async (reqID, quantity, blood_group) => {
+        try {
+            const data = {
+                request_id: reqID,
+                quantity: quantity,
+                blood_group: blood_group,
+                method: 'accept',
+                request_status: 'approved'
+            }
+            const result = await postReq(data); // wait for the Promise to resolve
+            console.log(result);
+            // location.reload();
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 
-    const rejReq = async (donorID) => {
+
+    const rejReq = async (reqID) => {
 
         const data = {
-            donation_id: donorID,
+            request_id: reqID,
             method: 'reject'
         }
         result = await postReq(data); // wait for the Promise to resolve
@@ -92,8 +101,10 @@
     }
 
     const postReq = async (data) => {
+        // console.log(data)
         try {
-            const response = await fetch('Model/handleDonationReq.php', {
+            // console.log(data ,'method accepted')
+            const response = await fetch('Model/handleBloodReq.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

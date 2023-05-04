@@ -38,7 +38,5 @@ CREATE TABLE `blood_stock` (
   `blood_group` varchar(3) NOT NULL,
   `quantity` int(11) NOT NULL,
   `expiry_date` date NOT NULL,
-  `location` varchar(255) NOT NULL,
-  `donation_id` varchar(100),
-  FOREIGN KEY (donation_id) REFERENCES blood_donation(donation_id)
 );
+

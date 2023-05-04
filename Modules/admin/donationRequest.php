@@ -78,9 +78,9 @@
         method: ' accept',
         request_status:'approved'
       });
-
+// console.log(data)
       result = await postReq(data); 
-      location.reload()
+      // location.reload()
     }
 
     const deleteDonor = async (donorID) => {
@@ -95,6 +95,7 @@
     }
 
     const postReq = async (data) => {
+      // console.log(data)
       try {
         const response = await fetch('Model/handleDonationReq.php', {
           method: 'POST',
