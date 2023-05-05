@@ -30,13 +30,13 @@ CREATE TABLE `blood_donation` (
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(255),
   `age` int(11) NOT NULL,
-  `request_status` varchar(20) NOT NULL DEFAULT 'Pending',
+  `request_status` varchar(20) NOT NULL DEFAULT 'Pending'
 
 );
 CREATE TABLE `blood_stock` (
   `stock_id` varchar(100) PRIMARY KEY,
   `blood_group` varchar(3) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `expiry_date` date NOT NULL,
+  `expiry_date` date NOT NULL
 );
 
