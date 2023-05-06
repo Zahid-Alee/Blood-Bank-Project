@@ -32,7 +32,7 @@
   }
 
 </style>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navigation" class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Logo</a>
   <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

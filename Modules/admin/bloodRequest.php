@@ -1,4 +1,19 @@
+<div class="alerts-notifications">
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+        Success message here
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div id="error-alert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+        Not Enough Blood For This Blood Type
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+</div>
+
 <table class="table table-striped table-bordered">
+<h3 class="page-heading" >Blood Requests</h3>
+
     <thead class="thead-dark">
         <tr>
             <th scope="col" class='text-center'><i class="fas fa-user"></i> Hospital</th>
@@ -71,6 +86,8 @@
 </table>
 <script>
     let method, result, data;
+    var successAlert = document.getElementById('success-alert');
+    var errorAlert = document.getElementById('error-alert');
     const acceptReq = async (reqID, quantity, blood_group) => {
         try {
             const data = {
@@ -80,9 +97,25 @@
                 method: 'accept',
                 request_status: 'approved'
             }
-            const result = await postReq(data); // wait for the Promise to resolve
-            console.log(result);
-            // location.reload();
+            const result = await postReq(data);
+
+            if (result.status === 'success') {
+                successAlert.classList.remove('d-none');
+                errorAlert.classList.add('d-none');
+                setTimeout(function() {
+                    successAlert.classList.add('d-none');
+                    location.reload();
+                }, 1300);
+            } else {
+                successAlert.classList.add('d-none');
+                errorAlert.classList.remove('d-none');
+                setTimeout(function() {
+                    errorAlert.classList.add('d-none');
+                    // location.reload();
+                }, 1300);
+
+            }
+
         } catch (error) {
             console.error('Error:', error);
         }
@@ -95,7 +128,7 @@
             request_id: reqID,
             method: 'reject'
         }
-        result = await postReq(data); // wait for the Promise to resolve
+        result = await postReq(data);
         console.log(result);
         location.reload();
     }
@@ -111,7 +144,7 @@
                 },
                 body: JSON.stringify(data)
             });
-            const responseData = await response.text();
+            const responseData = await response.json();
             return responseData;
         } catch (error) {
             console.error('Error:', error);

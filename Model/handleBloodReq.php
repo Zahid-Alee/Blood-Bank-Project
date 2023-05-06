@@ -94,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($data['method'] === 'reject') {
         $response =  $handleReq->RejectReq($data['request_id']);
     } elseif ($data['method'] === 'accept') {
-        print_r($data);
-        echo 'request accepted';
+        // print_r($data);
+        // echo 'request accepted';
         $response =  $handleReq->acceptReq(
             $data['request_id'],
             $data['blood_group'],

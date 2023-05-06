@@ -9,8 +9,21 @@
   <title>Document</title>
   <link rel="stylesheet" href="/assets/css/admin.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+
+    strong {
+
+      color: black;
+    }
+    .page-heading {
+
+      padding: 10px 0px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #320a0a;
+    }
+
     .main-container {
 
       display: flex;
@@ -21,7 +34,6 @@
       overflow-y: scroll;
     }
 
-
     a:hover {
       color: rgb(186, 184, 184);
     }
@@ -31,11 +43,20 @@
       border: 1px solid #ddd;
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
+      color: black !important;
+    }
+    .table td, th{
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
     }
 
-    thead th {
-      background-color: #941818 !important;
+    .table .thead-dark th {
       color: #fff;
+      background-color: #212529;
+      /* border-color: #32383e; */
+      font-size: 14px;
+      font-weight: 500;
     }
 
     .table-icon {
@@ -60,81 +81,102 @@
       margin-right: 5px;
     }
 
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      z-index: 9999;
+    }
 
+    #loader {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      margin: -40px 0 0 -40px;
+      border: 10px solid #3498db;
+      border-top-color: #fff;
+      border-radius: 100%;
+      animation: spin 2s ease-in-out infinite;
+    }
 
-    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
 <body>
-  <?php require_once './components/navbar.php'; ?>
 
   <div class="container-fluid">
-    <!-- <div class="row">
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div
-          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Share</button>
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
-          </div>
-        </div>
-        
-      </main>
-    </div> -->
+
   </div>
 
+
   <div class="sidebar close">
-      <?php require_once 'sidebar.php'; ?>
+    <?php require_once 'sidebar.php'; ?>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' style="color:#c41818; font-size:35px"></i>
+      <span style="color:#c41818; font-size:15px"><?php echo $_SESSION['username'] ?>
+        <a href="logout.php"> </i> <i class='bx bx-log-out'></i></a>
+
+      </span>
+
+
+
     </div>
-    <section class="home-section">
-        <div class="home-content">
-            <i class='bx bx-menu'></i>
-            <span class="text">Drop Down Sidebar</span>
+    <div class='dashboard-content px-2'>
+      <?php
+      $link = isset($_GET['link']) ? $_GET['link'] : 'dashboard';
+      if ($link == 'dashboard') {
+        require_once 'dashboard.php';
+      } elseif ($link == 'bloodStock') {
+        require_once 'bloodStock.php';
+      } elseif ($link == 'donationRequest') {
+        require_once 'donationRequest.php';
+      } elseif ($link == 'donationForm') {
+        require_once './components/donationForm.php';
+      } elseif ($link == 'bloodRequest') {
+        require_once 'bloodRequest.php';
+      }
 
-          
-            
-        </div>
-        <div class='dashboard-content px-5' >
-          <?php
-          $link = isset($_GET['link']) ? $_GET['link'] : 'dashboard';
-          if ($link == 'dashboard') {
-            require_once 'dashboard.php';
-          } elseif ($link == 'bloodStock') {
-            require_once 'bloodStock.php';
-          } elseif ($link == 'donationRequest') {
-            require_once 'donationRequest.php';
-          } elseif ($link == 'donationForm') {
-            require_once './components/donationForm.php';
-          } elseif ($link == 'bloodRequest') {
-            require_once 'bloodRequest.php';
-          }
+      ?>
+    </div>
+    <div id="preloader">
+      <div id="loader"></div>
+    </div>
 
-          ?>
-          </div>
-    </section>
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-        }
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
+  </section>
+  <script>
+    window.addEventListener('load', function() {
+      var preloader = document.getElementById('preloader');
+      preloader.style.display = 'none';
+    });
+
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e) => {
+        let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+      });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+    });
+  </script>
+
 
 </body>
 

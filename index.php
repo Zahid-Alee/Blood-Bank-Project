@@ -34,7 +34,7 @@ if (!$checkAuth->checkAuth()) {
   <?php
   if ($role === 'user') {
 
-    // echo require_once('../BBM/components/navbar.php');
+    echo require_once('../BBM/components/navbar.php');
 
     echo require_once('./Modules/users/userPanel.php');
   } elseif ($role === 'admin') {

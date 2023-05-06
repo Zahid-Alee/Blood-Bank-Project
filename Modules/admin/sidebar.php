@@ -1,44 +1,3 @@
-<!-- <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
-  <div class="sidebar-sticky">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="?link=dashboard">
-          <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="?link=bloodStock">
-          <i class="fas fa-chart-bar mr-2"></i> Check Stock
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="?link=donationRequest">
-          <i class="fas fa-folder-open mr-2"></i> Donation Requests
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="?link=bloodRequest">
-          <i class="fas fa-box-open mr-2"></i> Blood Requests
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="?link=donationForm">
-          <i class="fas fa-user-plus mr-2"></i> Add Donor
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-cogs mr-2"></i> Settings
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-question-circle mr-2"></i> Help
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav> -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -48,6 +7,14 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
+  body{
+    color: whitesmoke;
+  }
+
+  #navigation{
+
+    display: none;
+  }
 
   .sidebar {
     position: fixed;
@@ -55,9 +22,10 @@
     left: 0;
     height: 100%;
     width: 260px;
-    background: #11101d;
+    color:#11101d;
+    /* background: #11101d; */
     z-index: 100;
-    transition: all 0.5s ease;
+    /* transition: all 0.5s ease; */
     opacity: 1;
   }
 
@@ -70,6 +38,8 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: white;
   }
 
   .sidebar .logo-details i {
@@ -83,7 +53,7 @@
 
   .sidebar .logo-details .logo_name {
     font-size: 22px;
-    color: #fff;
+    /* color: #fff; */
     font-weight: 600;
     transition: 0.3s ease;
     transition-delay: 0.1s;
@@ -112,11 +82,14 @@
   .sidebar .nav-links li {
     position: relative;
     list-style: none;
-    transition: all 0.4s ease;
+    /* transition: all 0.4s ease; */
   }
 
-  .sidebar .nav-links li:hover {
-    background: #1d1b31;
+  .sidebar .nav-links li:hover i {
+   /* background: #b93b3b; */
+    /* border-radius: 5px; */
+    color: #c41818;
+    transform: scale(1.5, 1.5);
   }
 
   .sidebar .nav-links li .iocn-link {
@@ -131,13 +104,13 @@
 
   .sidebar .nav-links li i {
     height: 50px;
-    min-width: 78px;
+    min-width: 50px;
     text-align: center;
     line-height: 50px;
-    color: #fff;
+    color: #11101d;
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
   }
 
   .sidebar .nav-links li.showMenu i.arrow {
@@ -155,10 +128,14 @@
   }
 
   .sidebar .nav-links li a .link_name {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 400;
-    color: #fff;
-    transition: all 0.4s ease;
+    color: #11101d;
+    /* transition: all 0.4s ease; */
+  }
+
+  .sidebar.close {
+    opacity: 1 !important;
   }
 
   .sidebar.close .nav-links li a .link_name {
@@ -167,27 +144,29 @@
   }
 
   .sidebar .nav-links li .sub-menu {
-    padding:5px
+    padding: 5px;
     margin-top: -10px;
-    background: #1d1b31;
+    font-size: 15px;
+    background: #c41818;
     display: none;
+    text-shadow: none !important;
   }
 
   .sidebar .nav-links li.showMenu .sub-menu {
     display: block;
   }
-
   .sidebar .nav-links li .sub-menu a {
-    color: #fff;
-    font-size: 15px;
-    padding: 5px 0;
+    color: #efe6e6;
+    font-size: 13px !important;
+    font-weight: 400;
+    margin: 10px 20px;
     white-space: nowrap;
-    opacity: 0.6;
     transition: all 0.3s ease;
   }
 
   .sidebar .nav-links li .sub-menu a:hover {
-    opacity: 1;
+    opacity: .8;
+    /* background-color: indianred; */
   }
 
   .sidebar.close .nav-links li .sub-menu {
@@ -207,7 +186,7 @@
     top: 0;
     opacity: 1 !important;
     pointer-events: auto;
-    transition: all 0.4s ease;
+    /* transition: all 0.4s ease; */
   }
 
   .sidebar .nav-links li .sub-menu .link_name {
@@ -215,7 +194,8 @@
   }
 
   .sidebar.close .nav-links li .sub-menu .link_name {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 400;
     opacity: 1;
     display: block;
   }
@@ -239,10 +219,10 @@
     width: 260px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #1d1b31;
+    justify-content: space-around;
+    background: #c41818;
     padding: 12px 0;
-    transition: all 0.5s ease;
+    /* transition: all 0.5s ease; */
   }
 
   .sidebar.close .profile-details {
@@ -262,10 +242,11 @@
     height: 52px;
     width: 52px;
     object-fit: cover;
-    border-radius: 16px;
+    border: 2px solid white;
+    border-radius: 50px;
     margin: 0 14px 0 12px;
-    background: #1d1b31;
-    transition: all 0.5s ease;
+    /* background: #1d1b31; */
+    /* transition: all 0.5s ease; */
   }
 
   .sidebar.close .profile-details img {
@@ -275,7 +256,7 @@
   .sidebar .profile-details .profile_name,
   .sidebar .profile-details .job {
     color: #fff;
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 500;
     white-space: nowrap;
   }
@@ -291,12 +272,13 @@
   }
 
   .home-section {
-    position: relative;
-    background: #E4E9F7;
+    position: absolute;
+    top: 0;
+    background: #dcc0c029;
     height: 100vh;
     left: 260px;
     width: calc(100% - 260px);
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
   }
 
   .sidebar.close~.home-section {
@@ -305,9 +287,12 @@
   }
 
   .home-section .home-content {
-    height: 60px;
+    height: 40px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding-right: 50px;
+    background: #fff;
   }
 
   .home-section .home-content .bx-menu,
@@ -352,18 +337,18 @@
   }
 </style>
 
-<div class="logo-details">
-  <i class='bx bxl-c-plus-plus'></i>
-  <span class="logo_name">CodingLab</span>
+<div class="logo-details container">
+  <!-- <i class='bx bxl-c-plus-plus'></i> -->
+  <span class="logo_name">Blood Bank</span>
 </div>
 <ul class="nav-links">
   <li>
-    <a href="/">
+    <a  href="?link=dashboard">
       <i class='bx bx-grid-alt'></i>
-      <span class="link_name">Dashboard</span>
+      <span class="link_name">DashBoard</span>
     </a>
     <ul class="sub-menu blank">
-      <li><a class="link_name" href="#">Category</a></li>
+      <li><a class="link_name"  href="?link=dashboard">DashBoard</a></li>
     </ul>
   </li>
   <li>
@@ -376,35 +361,38 @@
     </div>
     <ul class="sub-menu">
       <li><a class="link_name" href="#">Category</a></li>
-      <li><a class="nav-link" href="?link=bloodRequest">
-          <i class="fas fa-box-open mr-2"></i> Blood Requests
-        </a></li>
-      <li><a class="nav-link" href="?link=donationRequest">
-          <i class="fas fa-folder-open mr-2"></i> Donation Requests
-        </a></li>
+      <a class="nav-link" href="?link=bloodRequest">
+        <li style="list-style:disc"> Blood Requests
+        </li>
+        <a class="nav-link" href="?link=donationRequest">
+          
+          <li style="list-style:disc">Donation Requests </li>
+
+        </a>
+      </a>
     </ul>
   </li>
- 
+
   <li>
     <a href="?link=bloodStock">
       <i class='bx bx-line-chart'></i>
       <span class="link_name">Check Stock</span>
     </a>
     <ul class="sub-menu blank">
-      <li><a class="link_name" href="#">Check Stock</a></li>
+      <li><a class="link_name"  href="?link=bloodStock">Check Stock</a></li>
     </ul>
   </li>
-  
+
   <li>
-    <a  href="?link=donationForm">
-      <i class='bx bx-compass'></i>
+    <a href="?link=donationForm">
+      <i class='bx bx-user-plus'></i>
       <span class="link_name">Add Donors</span>
     </a>
     <ul class="sub-menu blank">
-      <li><a class="link_name"href="?link=donationForm">Add Donors</a></li>
+      <li><a class="link_name" href="?link=donationForm">Add Donors</a></li>
     </ul>
   </li>
- 
+
   <li>
     <a href="#">
       <i class='bx bx-cog'></i>
@@ -417,13 +405,18 @@
   <li>
     <div class="profile-details">
       <div class="profile-content">
-        <img src="image/profile.jpg" alt="profileImg">
+        <!-- <img src="image/profile.jpg" alt="profile"> -->
+        <i class='bx bx-user text-light'></i>
       </div>
       <div class="name-job">
-        <div class="profile_name">Prem Shahi</div>
-        <div class="job">Web Desginer</div>
+        <div class="profile_name">
+          <?php  echo $_SESSION['username'] ?>
+        </div>
+        <div class="job" style="color:#43ffe5">
+         <?php echo $_SESSION["role"] ?> 
+        </div>
       </div>
-      <i class='bx bx-log-out'></i>
+     <a href="logout.php"><i class='bx bx-log-out text-light'></i></a>
     </div>
   </li>
 </ul>

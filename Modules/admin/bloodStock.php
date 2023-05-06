@@ -1,7 +1,22 @@
+<div class="alerts-notifications">
+    <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+        Success message here
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div id="error-alert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+        Not Enough Blood For This Blood Type
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+</div>
+
 <table class="table table-striped table-bordered">
+    
+<h3 class="page-heading" >Blood Requests</h3>
     <thead class="thead-dark">
         <tr>
-           
+
             <th scope="col" class='text-center'><i class="fas fa-sort-numeric-up"></i>
                 Stock ID</th>
             <th scope="col" class='text-center'><i class="fas fa-tint"></i> Quatity </th>
@@ -60,12 +75,13 @@
 
 <script>
     // let method, result;
+    var successAlert = document.getElementById('success-alert');
+    var errorAlert = document.getElementById('error-alert');
 
     const deleteStock = async (stock_id) => {
         const stockID = {
             stock_id: stock_id
         };
-        //   console.log(stockID);
         fetch('Model/handleStock.php', {
                 method: 'POST',
                 headers: {
@@ -76,9 +92,23 @@
             .then(response => response.text())
             .then(data => {
                 console.log('Success:', data);
+                successAlert.classList.remove('d-none');
+                errorAlert.classList.add('d-none');
+                setTimeout(function() {
+                    successAlert.classList.add('d-none');
+                    location.reload();
+                }, 1300);
             })
             .catch((error) => {
                 console.error('Error:', error);
+                successAlert.classList.add('d-none');
+                errorAlert.classList.remove('d-none');
+                setTimeout(function() {
+                    errorAlert.classList.add('d-none');
+                }, 1300);
             });
     }
+
+
+
 </script>
