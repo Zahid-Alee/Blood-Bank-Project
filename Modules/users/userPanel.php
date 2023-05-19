@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Modules/users/user.css">
+    <link rel="stylesheet" href="Modules/users/footer.css">
+
     <title>Document</title>
     <style>
 
@@ -15,6 +17,8 @@
 
 <body>
     <div class="user-page container p-0">
+        <?php include('./Modules/users/navbar.php') ?>
+
         <?php include('./Modules/users/header.php') ?>
 
         <?php include('./Modules/users/services.php') ?>

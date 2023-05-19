@@ -2,7 +2,7 @@
         <!-- <h2><i class="fas fa-envelope-open-text text-danger"></i> Contact Us</h2> -->
 		<div class="col-md-10 col-lg-8 mx-auto">
                 <div class="header-section">
-                    <h2 class="title">Contact <span>Us</span></h2>
+                    <h2 class="title ">Contact <span class='px-2'>Us</span></h2>
                     <p class="description">Reach out to us through our contact section for any inquiries, feedback, or support. We're here to assist you promptly and ensure a seamless communication experience.</p>
                 </div>
             </div>

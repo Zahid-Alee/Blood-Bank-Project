@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&family=Poppins&family=Roboto:wght@300;400&display=swap");
+
 :root {
   --primary-color: #d32f2f;
   --text-color: #333;
@@ -15,10 +17,13 @@ ul {
 
 * {
   /* color: rgba(255, 255, 255, 0); */
+  font-family: "Poppins";
+}
+body {
+  background-color: #fff5f5;
 }
 .header-section {
   margin-bottom: 35px;
-  
 }
 
 .header-section .description {
@@ -33,6 +38,7 @@ ul {
   text-transform: uppercase;
   font-weight: 700;
   text-align: center;
+  font-family: "lobster", cursive;
 }
 
 .title:before {
@@ -59,13 +65,22 @@ ul {
 .title span {
   color: #f70037;
 }
+.card {
+  background-color: #fff5f5;
+}
+
+.btn {
+  cursor: pointer;
+  margin: auto;
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+}
 
 .hero-header {
   width: 100vw;
-  background: url("./images/Blood5.jpg") center center / cover;
-  padding: 65px 0px;
-  backdrop-filter: blur(5px);
-  /* opacity: 0.7; */
+  /* background: url("./images/header-bg-2-removebg.png") center center / 85%  no-repeat; */
+  padding: 20px 0px;
 }
 /*  */
 .user-page {
@@ -77,9 +92,9 @@ ul {
 
 .container h1 {
   margin-bottom: 1.5rem !important;
-  color: #251717ba;
-  font-weight: 700;
-  font-family: math;
+  color: #f70037;
+  /* font-weight: 700; */
+  font-family: "Lobster";
 }
 
 p.sub-title {

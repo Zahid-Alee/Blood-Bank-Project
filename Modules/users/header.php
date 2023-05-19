@@ -1,11 +1,10 @@
  <section class='hero-header'>
         <div class="container">
-            <div class="row justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center" >
                 <div class="col-md-6 text-center">
-                    <h1 class="display-4 mb-4">Blood Management System</h1>
+                    <h1 class="display-4 mb-4">Your <span style="color:black">Donations</span> Can <br> <span style="color:black">Save <span></span></span> Lives</h1>
                     <p class="sub-title">Be a Lifesaver Donate Blood Today, <br>
-                        Your Donation Can Save Lives ,<br>
-                        One Pint of Blood Can Save Three Lives Donate Today</p>
+                        Your Donation Can Save Lives <br></p>
                     <div class="d-flex justify-content-around my-5">
                         <div class="card col-sm-4 mx-2">
                             <div class="card-body">
