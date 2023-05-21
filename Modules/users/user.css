@@ -65,9 +65,9 @@ body {
 .title span {
   color: #f70037;
 }
-.card {
+/* .card {
   background-color: #fff5f5;
-}
+} */
 
 .btn {
   cursor: pointer;
@@ -75,6 +75,10 @@ body {
   display: block;
   width: fit-content;
   margin: 20px auto;
+}
+
+.form-control{
+  background-color: #fff5f5 !important;
 }
 
 .hero-header {

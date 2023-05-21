@@ -1,24 +1,31 @@
  <section class='hero-header'>
         <div class="container">
             <div class="row justify-content-center align-items-center" >
-                <div class="col-md-6 text-center">
+                <div class="text-center w-100 d-flex">
+                    <div class="col-left w-50 pt-5">
                     <h1 class="display-4 mb-4">Your <span style="color:black">Donations</span> Can <br> <span style="color:black">Save <span></span></span> Lives</h1>
                     <p class="sub-title">Be a Lifesaver Donate Blood Today, <br>
                         Your Donation Can Save Lives <br></p>
-                    <div class="d-flex justify-content-around my-5">
-                        <div class="card col-sm-4 mx-2">
+                    </div>
+                    <div class="col-right w-50">
+                    <img class="w-100" src="Modules/users/images/header-bg-2-removebg.png" alt="">
+                    </div>
+                    
+                </div>
+                <div class="d-flex justify-content-around my-5 w-100">
+                        <div class="card col-sm-4 mx-2 text-center ">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-tint"></i> Collected</h5>
                                 <p class="card-text">10,000+ Bags</p>
                             </div>
                         </div>
-                        <div class="card col-sm-4 mx-2">
+                        <div class="card col-sm-4 mx-2 text-center">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-hand-holding-heart"></i> Monthly Donations</h5>
                                 <p class="card-text">$5,000+</p>
                             </div>
                         </div>
-                        <div class="card col-sm-4 mx-2">
+                        <div class="card col-sm-4 mx-2 text-center">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-heartbeat"></i> Lives Saved</h5>
                                 <p class="card-text">2,500+</p>
@@ -33,7 +40,6 @@
                             <i class="fas fa-info-circle"></i> Learn More
                         </button>
                     </div>
-                </div>
             </div>
         </div>
     </section>

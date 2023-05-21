@@ -1,4 +1,4 @@
-<footer class="text-center text-lg-start bg-white text-muted" style="background-color:#fff5f5">
+<footer class="text-center text-lg-start bg-white text-muted" style="background-color:#fff5f5 !important">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
@@ -8,58 +8,22 @@
     <!-- Left -->
 
     <!-- Right -->
-    <div>
-    <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #3b5998;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
+    <div class="d-flex" >
+      <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
       <!-- Twitter -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #55acee;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
       <!-- Google -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #dd4b39;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-google"></i
-      ></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
 
       <!-- Instagram -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #ac2bac;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
 
       <!-- Linkedin -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #0082ca;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
       <!-- Github -->
-      <a
-        class="btn text-white btn-floating m-1"
-        style="background-color: #333333;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-github"></i
-      ></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
     </div>
     <!-- Right -->
   </section>
