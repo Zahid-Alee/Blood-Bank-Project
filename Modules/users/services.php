@@ -1,4 +1,4 @@
-<section class="services">
+<section class="services py-5">
 	<div class="container">
 		<div class="row justify-content-center text-center">
 			<div class="col-md-10 col-lg-8">

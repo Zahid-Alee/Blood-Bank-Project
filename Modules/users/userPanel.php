@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Modules/users/user.css">
     <link rel="stylesheet" href="Modules/users/footer.css">
-
     <title>Document</title>
     <style>
 
@@ -16,13 +15,9 @@
 </head>
 
 <body>
+    <?php include('./Modules/users/header.php') ?>
     <div class="user-page container p-0">
-        <?php include('./Modules/users/navbar.php') ?>
-
-        <?php include('./Modules/users/header.php') ?>
-
         <?php include('./Modules/users/services.php') ?>
-
         <div id="donation-popup" class="popup">
             <div class="popup-content">
                 <div class="popup-header">
@@ -100,21 +95,22 @@
                         convenient navigation, directions, and a smooth visit experience.</p>
                 </div>
             </div>
-            <iframe class="custom-map"
+            <div class="content d-flex" style="justify-content:space-between;">
+            <iframe class="custom-map w-45"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s"
                 style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="side-img w-45" style="width:45%">
+                <img  class="w-100" src="Modules/users/images/map-side-img.png" alt="">
+
+                </div>
+            </div>
+           
         </div>
 
         <?php include('./Modules/users/contact.php') ?>
-
-        <!-- Footer -->
-        <?php include('./Modules/users/footer.php') ?>
-
-        <!-- Footer -->
-
-
     </div>
+    <?php include('./Modules/users/footer.php') ?>
 
 </body>
 <script>

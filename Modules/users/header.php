@@ -1,9 +1,10 @@
- <section class='hero-header'>
+<?php include('./Modules/users/navbar.php') ?>
+<section class='hero-header'>
         <div class="container">
             <div class="row justify-content-center align-items-center" >
                 <div class="text-center w-100 d-flex">
                     <div class="col-left w-50 pt-5">
-                    <h1 class="display-4 mb-4">Your <span style="color:black">Donations</span> Can <br> <span style="color:black">Save <span></span></span> Lives</h1>
+                    <h1 class="display-4 mb-4">Your <span style="color:white">Donations</span> Can <br> <span style="color:white">Save <span></span></span> Lives</h1>
                     <p class="sub-title">Be a Lifesaver Donate Blood Today, <br>
                         Your Donation Can Save Lives <br></p>
                     </div>

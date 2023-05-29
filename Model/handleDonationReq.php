@@ -13,6 +13,27 @@ class BloodManagement
         $this->conn = new DataSource();
     }
 
+    function createAdminNotification($data)
+    {
+        $query = "SELECT userID FROM Orders WHERE OrderID = ?";
+        $paramType = "i";
+        $paramValue = array($data['orderID']);
+        $user = $this->conn->select($query, $paramType, $paramValue);
+
+        if (!empty($user)) {
+            $userID = $user[0]['userID'];
+
+            $message = "Your Order Has Been Accepted";
+            $query = "INSERT INTO user_notifications(OrderID, userID, message, notFrom) VALUES (?, ?, ?, ?)";
+            $paramType = 'iiss';
+            $paramValue = array($data['orderID'], $userID, $message, 'CakeNShape');
+            return $this->conn->insert($query, $paramType, $paramValue);
+        } else {
+            return "User not found";
+        }
+
+    }
+
     function acceptReq(
         $stock_id,
         $donation_id,
@@ -59,6 +80,8 @@ class BloodManagement
                 "status" => "success",
                 "message" => "You have registered successfully."
             );
+            $this->createAdminNotification($stockID);
+            
         }
         return $response;
     }

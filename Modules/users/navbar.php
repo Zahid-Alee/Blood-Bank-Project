@@ -1,20 +1,30 @@
 <style>
+  .navbar{
+
+    width: 100%;
+    background-color: #141934;
+    color: whitesmoke;
+  }
   .navbar-brand {
     font-size: 1.5rem;
   }
 
   .navbar-nav .nav-link {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     margin-left: 1rem;
     margin-right: 1rem;
+    color: whitesmoke !important;
   }
-  .nav-item a{
-    color:rgb(0 0 0 / 73%) !important;
-  }
-.nav-item a:hover {
 
-  color:red !important;
-}
+  .nav-item a {
+    color: rgb(0 0 0 / 73%) !important;
+  }
+
+  .nav-item a:hover {
+
+    color: red !important;
+  }
+
   .navbar-toggler {
     border: none;
   }
@@ -30,7 +40,6 @@
       margin-bottom: 1rem;
     }
   }
-
 </style>
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light" style="backgroud:transparent">
   <a class="navbar-brand" href="#">Logo</a>
@@ -44,32 +53,25 @@
         <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-search"></i> Search</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item search-option" href="#" data-type="location">Location</a>
-          <a class="dropdown-item search-option" href="#" data-type="blood-group">Blood Group</a>
-        </div>
+        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Notifications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Contact Us</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign up</a> -->
-      </li>
     </ul>
 
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <div class="search-bar">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <ul class="list-group search-suggestions"></ul>
       </div>
-    </form>
+    </form> -->
   </div>
 </nav>
 
@@ -88,13 +90,13 @@
   const searchOptionLinks = document.querySelectorAll('.search-option');
 
   // Show search options dropdown when search button is clicked
-  document.querySelector('.nav-link.dropdown-toggle').addEventListener('click', function() {
+  document.querySelector('.nav-link.dropdown-toggle').addEventListener('click', function () {
     document.querySelector('.dropdown-menu').classList.toggle('show');
   });
 
   // Add click event listeners to search option links
-  searchOptionLinks.forEach(function(link) {
-    link.addEventListener('click', function(event) {
+  searchOptionLinks.forEach(function (link) {
+    link.addEventListener('click', function (event) {
       event.preventDefault();
 
       // Update search input placeholder text based on selected option
@@ -112,7 +114,7 @@
   });
 
   // Hide search options dropdown when clicked outside of it
-  document.addEventListener('click', function(event) {
+  document.addEventListener('click', function (event) {
     const dropdown = document.querySelector('.dropdown-menu');
     if (dropdown.classList.contains('show') && !dropdown.contains(event.target)) {
       dropdown.classList.remove('show');
@@ -131,7 +133,7 @@
 
 
   // Fetch data from the server and display search suggestions
-  searchInput.addEventListener('input', function() {
+  searchInput.addEventListener('input', function () {
     const query = this.value;
     if (query.trim().length > 0) {
       fetch('/search?q=' + query)
@@ -159,7 +161,7 @@
   });
 
   // Add submit event listener to search form
-  document.querySelector('.search-bar form').addEventListener('submit', function(event) {
+  document.querySelector('.search-bar form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Get selected option class from search bar
