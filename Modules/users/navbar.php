@@ -1,10 +1,11 @@
 <style>
-  .navbar{
+  .navbar {
 
     width: 100%;
     background-color: #141934;
     color: whitesmoke;
   }
+
   .navbar-brand {
     font-size: 1.5rem;
   }
@@ -22,7 +23,7 @@
 
   .nav-item a:hover {
 
-    color: red !important;
+    color: #bfb8b8 !important;
   }
 
   .navbar-toggler {
@@ -41,6 +42,8 @@
     }
   }
 </style>
+<?php session_start();
+$username = $_SESSION['username']; ?>
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light" style="backgroud:transparent">
   <a class="navbar-brand" href="#">Logo</a>
   <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
@@ -56,13 +59,15 @@
         <a class="nav-link" href="#"><i class="fas fa-envelope"></i> About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Notifications</a>
+        <a class="nav-link" href="Modules/users/notification.php"><i class="fas fa-envelope"></i> Notifications</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-bell"></i> Contact Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i>
+          <?php echo $username ?>
+        </a>
       </li>
     </ul>
 

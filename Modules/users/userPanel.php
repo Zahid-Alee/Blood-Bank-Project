@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="Modules/users/footer.css">
     <title>Document</title>
     <style>
-
+        
+       .close-request{
+        cursor: pointer;
+       }
+       .close-request:hover{
+        color: rgb(0,0,0,0.7);
+       }
     </style>
 </head>
 
@@ -57,33 +63,29 @@
                 use DataSource\DataSource;
 
                 require_once __DIR__ . '../../../lib/DataSource.php';
-
                 $con = new DataSource;
-                $query = 'SELECT * from   blood_donation where request_status="approved" ';
-                $paramType = 's';
+                $query = 'SELECT * FROM blood_stock';
+                $paramType = '';
                 $paramArray = array();
-                $bloodPosts = $con->select($query, $paramType, $paramArray);
+                $bloodStock = $con->select($query, $paramType, $paramArray);
 
-                if (!empty($bloodPosts)) {
-
-                    foreach ($bloodPosts as $Post) {
-
+                if (!empty($bloodStock)) {
+                    foreach ($bloodStock as $stock) {
                         echo '<div class="col-md-4 col-lg-3 mb-4 ">';
                         echo '<div class="card h-100">';
                         echo '<div class="card-body">';
-                        echo '<h5 class="card-title text-capitalize"><i class="fas fa-user pr-2 py-2"></i> ' . $Post['donor_name'] . '</h5>';
-                        echo '<p class="card-text"><i class="fas fa-calendar-alt pr-2 py-2"></i> ' . $Post['age'] . '</p>';
-                        echo '<p class="card-text"><i class="fas fa-map-marker-alt pr-2 py-2"></i> ' . $Post['location'] . '</p>';
-                        echo '<p class="card-text"><i class="fas fa-tint pr-2 py-2"></i> ' . $Post['blood_group'] . '</p>';
-                        echo '<p class="card-text"><i class="fas fa-tint pr-2 py-2"></i> ' . $Post['quantity'] . '(ml)</p>';
+                        echo '<h5 class="card-title text-capitalize"><i class="fas fa-tint pr-2 py-2"></i> ' . $stock['blood_group'] . '</h5>';
+                        echo '<p class="card-text"><i class="fas fa-tint pr-2 py-2"></i> Quantity: ' . $stock['quantity'] . ' (ml)</p>';
+                        echo '<p class="card-text"><i class="fas fa-calendar-alt pr-2 py-2"></i> Expiry Date: ' . $stock['last_updated'] . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                     }
                 } else {
-                    echo "<strong>No requests</strong>";
+                    echo "<strong>No blood stock available</strong>";
                 }
                 ?>
+
             </div>
             <a href="#" class="btn btn-primary request-blood-btn">Request Blood</a>
         </div>
@@ -96,16 +98,16 @@
                 </div>
             </div>
             <div class="content d-flex" style="justify-content:space-between;">
-            <iframe class="custom-map w-45"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s"
-                style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="custom-map w-45"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.177705176766!2d72.31188797547888!3d30.031759274930085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393c95446603cf47%3A0xa4c7c9803430aee0!2sCOMSATS%20University%20Islamabad%2C%20Vehari%20Campus!5e0!3m2!1sen!2s!4v1681643596890!5m2!1sen!2s"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="side-img w-45" style="width:45%">
-                <img  class="w-100" src="Modules/users/images/map-side-img.png" alt="">
+                    <img class="w-100" src="Modules/users/images/map-side-img.png" alt="">
 
                 </div>
             </div>
-           
+
         </div>
 
         <?php include('./Modules/users/contact.php') ?>

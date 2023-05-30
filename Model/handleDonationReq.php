@@ -1,113 +1,102 @@
 <?php
-
 use DataSource\DataSource;
-
 
 class BloodManagement
 {
     private $conn;
 
-    function __construct()
+    public function __construct()
     {
         require_once __DIR__ . '../../lib/DataSource.php';
         $this->conn = new DataSource();
     }
 
-    function createAdminNotification($data)
+    public function createAdminNotification($id)
     {
-        $query = "SELECT userID FROM Orders WHERE OrderID = ?";
-        $paramType = "i";
-        $paramValue = array($data['orderID']);
+        $query = "SELECT userID FROM blood_donation WHERE donation_id = ?";
+        $paramType = "s";
+        $paramValue = array($id);
         $user = $this->conn->select($query, $paramType, $paramValue);
 
         if (!empty($user)) {
             $userID = $user[0]['userID'];
 
-            $message = "Your Order Has Been Accepted";
-            $query = "INSERT INTO user_notifications(OrderID, userID, message, notFrom) VALUES (?, ?, ?, ?)";
-            $paramType = 'iiss';
-            $paramValue = array($data['orderID'], $userID, $message, 'CakeNShape');
+            $message = "Your Blood Request Has Been Accepted";
+            $query = "INSERT INTO user_notifications(donation_id, userID, message, notFrom) VALUES (?, ?, ?, ?)";
+            $paramType = 'siss';
+            $paramValue = array($id, $userID, $message, 'Blood_Bank');
             return $this->conn->insert($query, $paramType, $paramValue);
         } else {
             return "User not found";
         }
-
     }
 
-    function acceptReq(
-        $stock_id,
-        $donation_id,
-        $blood_group,
-        $quantity,
-        $requestStatus
-    ) {
-        // Check if donation_id already exists in blood_stock table
+    public function acceptReq($data)
+    {
+        $response = array();
+
         $query = 'SELECT * FROM blood_stock WHERE blood_group = ?';
         $paramType = 's';
-        $paramValue = array($blood_group);
+        $paramValue = array($data['stock']['blood_group']);
         $result = $this->conn->select($query, $paramType, $paramValue);
 
-        // If bloo_group exists, update quantity and return success message
         if (!empty($result)) {
-            $updatedQuantity = $result[0]['quantity'] + $quantity;
+            $updatedQuantity = $result[0]['quantity'] + $data['stock']['quantity'];
             $query = 'UPDATE blood_stock SET quantity = ? WHERE blood_group = ?';
             $paramType = 'ss';
-            $paramValue = array($updatedQuantity, $blood_group);
+            $paramValue = array($updatedQuantity, $data['stock']['blood_group']);
             $this->conn->update($query, $paramType, $paramValue);
-        }
-        // If donation_id does not exist, insert new record and return success message
-        else {
+        } else {
             $query = 'INSERT INTO blood_stock (stock_id, blood_group,quantity) VALUES(?,?,?)';
             $paramType = 'sss';
             $paramValue = array(
-                $stock_id,
-                $blood_group,
-                $quantity,
+                $data['stock_id'],
+                $data['stock']['blood_group'],
+                $data['stock']['quantity'],
             );
-            $stockID = $this->conn->insert($query, $paramType, $paramValue);
+            $this->conn->insert($query, $paramType, $paramValue);
         }
+
         $query = 'UPDATE blood_donation SET request_status = ? WHERE donation_id = ?';
         $paramType = 'ss';
-        $paramValue = array($requestStatus, $donation_id);
-        $updatedID = $this->conn->update(
-            $query,
-            $paramType,
-            $paramValue
-        );
-        $response = array();
-        if (!empty($stockID && $updatedID)) {
-            $response = array(
-                "status" => "success",
-                "message" => "You have registered successfully."
-            );
-            $this->createAdminNotification($stockID);
-            
+        $paramValue = array('approved', $data['stock']['donation_id']);
+        $updatedID = $this->conn->update($query, $paramType, $paramValue);
+
+        if (!empty($updatedID)) {
+            $notID = $this->createAdminNotification($data['stock']['donation_id']);
+            if (!empty($notID)) {
+                $response = array(
+                    "status" => "success",
+                    "message" => "Donation Request has been accepted."
+                );
+            } else {
+                $response = array(
+                    "status" => "error",
+                    "message" => "Donation Request cannot be processed."
+                );
+            }
         }
+
         return $response;
     }
 
-    function RejectReq($donorID)
+    public function rejectReq($donorID)
     {
-        // Check if record with given stock_id exists in blood_stock table
         $query = "SELECT * FROM blood_donation WHERE donation_id = ?";
         $paramType = "s";
         $paramValue = array($donorID);
         $result = $this->conn->select($query, $paramType, $paramValue);
 
-        // If record exists, delete it and return success message
         if (!empty($result)) {
             $query = "DELETE FROM blood_donation WHERE donation_id = ?";
             $paramType = "s";
             $paramValue = array($donorID);
             $this->conn->delete($query, $paramType, $paramValue);
-
             $response = array(
                 "status" => "success",
                 "message" => "Record deleted successfully."
             );
-        }
-        // If record does not exist, return error message
-        else {
+        } else {
             $response = array(
                 "status" => "error",
                 "message" => "Record not found."
@@ -120,19 +109,14 @@ class BloodManagement
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
-    // print_r($data);
+    if ($data !== null) {
+        $insertDonor = new BloodManagement;
+        $response = $data['method'] === 'reject'
+            ? $insertDonor->rejectReq($data['donation_id'])
+            : $insertDonor->acceptReq($data);
 
-    $insertDonor = new BloodManagement;
-
-    $response = $data['method'] === 'reject'
-        ? $insertDonor->RejectReq($data['donation_id'])
-        : $insertDonor->acceptReq(
-            $data['stock_id'],
-            $data['donation_id'],
-            $data['blood_group'],
-            $data['quantity'],
-            $data['request_status']
-        );
-
-    echo json_encode($response);
+        echo json_encode($response);
+    } else {
+        echo 'Error decoding JSON';
+    }
 }

@@ -55,12 +55,12 @@
   </li>
 
   <li>
-    <a href="#">
-      <i class='bx bx-cog'></i>
-      <span class="link_name">Setting</span>
+    <a href="?link=donationsHistory">
+    <i class="bx bx-history"></i>
+      <span class="link_name ">History</span>
     </a>
     <ul class="sub-menu blank">
-      <li><a class="link_name" href="#">Setting</a></li>
+      <li><a class="link_name" href="?link=donationsHistory">History</a></li>
     </ul>
   </li>
   <li>

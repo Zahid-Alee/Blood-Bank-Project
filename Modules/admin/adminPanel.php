@@ -34,9 +34,9 @@
       <i class='bx bx-menu' style="color:#c41818;"></i>
       <strong class="text-capitalize px-3" style="color:#c41818; font-size:16px ;">
         <?php echo $_SESSION['username'] ?>
-        <a href="logout.php"  class='text-dark'><i class='bx bx-log-out px-3'></i></a>
+        <a href="logout.php" class='text-dark'><i class='bx bx-log-out px-3'></i></a>
 
-      </span>
+        </span>
 
 
 
@@ -54,6 +54,8 @@
         include './components/donationForm.php';
       } elseif ($link == 'bloodRequest') {
         include 'bloodRequest.php';
+      } elseif ($link == 'donationsHistory') {
+        include 'checkHistory.php';
       }
 
       ?>

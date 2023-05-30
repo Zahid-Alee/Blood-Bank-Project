@@ -12,7 +12,7 @@
 </div>
 
 <table class="table table-striped table-bordered">
-<h3 class="page-heading" >Blood Requests</h3>
+    <h3 class="page-heading">Blood Requests</h3>
 
     <thead class="thead-dark">
         <tr>
@@ -43,7 +43,7 @@
 
             foreach ($requests as $request) {
 
-        ?>
+                ?>
                 <tr>
                     <th scope="row" class='text-center'>
                         <?php echo $request['hospital_name']; ?>
@@ -71,12 +71,15 @@
                         $quantityReq = $request['quantity'];
                         $blood_group = $request['blood_group'];
                         ?>
-                        <span class="table-icon text-success px-2" onclick="acceptReq('<?php echo $reqID ?>','<?php echo $quantityReq ?>','<?php echo $blood_group ?>')"><i class="fas fa-check"></i></span>
+                        <span class="table-icon text-success px-2"
+                            onclick="acceptReq('<?php echo $reqID ?>','<?php echo $quantityReq ?>','<?php echo $blood_group ?>')"><i
+                                class="fas fa-check"></i></span>
                         <!-- -->
-                        <span class="table-icon text-danger px-2" onclick="rejReq('<?php echo $reqID ?>')"><i class="fas fa-times"></i></span>
+                        <span class="table-icon text-danger px-2" onclick="rejReq('<?php echo $reqID ?>')"><i
+                                class="fas fa-times"></i></span>
                     </td>
                 </tr>
-        <?php
+                <?php
             }
         } else {
             echo "<strong>No requests</strong>";
@@ -85,70 +88,71 @@
     </tbody>
 </table>
 <script>
-    let method, result, data;
-    var successAlert = document.getElementById('success-alert');
-    var errorAlert = document.getElementById('error-alert');
-    const acceptReq = async (reqID, quantity, blood_group) => {
-        try {
-            const data = {
-                request_id: reqID,
-                quantity: quantity,
-                blood_group: blood_group,
-                method: 'accept',
-                request_status: 'approved'
+    const successAlert = document.getElementById('success-alert');
+    const errorAlert = document.getElementById('error-alert');
+
+    const createNotification = (type, callback) => {
+        const alertElement = type === 'error' ? errorAlert : successAlert;
+        alertElement.classList.remove('d-none');
+        const intervalId = setTimeout(() => {
+            alertElement.classList.add('d-none');
+            clearTimeout(intervalId);
+            if (callback) {
+                callback();
             }
-            const result = await postReq(data);
+        }, 1300);
+    };
 
-            if (result.status === 'success') {
-                successAlert.classList.remove('d-none');
-                errorAlert.classList.add('d-none');
-                setTimeout(function() {
-                    successAlert.classList.add('d-none');
-                    location.reload();
-                }, 1300);
-            } else {
-                successAlert.classList.add('d-none');
-                errorAlert.classList.remove('d-none');
-                setTimeout(function() {
-                    errorAlert.classList.add('d-none');
-                    // location.reload();
-                }, 1300);
-
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-
-    const rejReq = async (reqID) => {
-
-        const data = {
-            request_id: reqID,
-            method: 'reject'
-        }
-        result = await postReq(data);
-        console.log(result);
-        location.reload();
-    }
-
-    const postReq = async (data) => {
-        // console.log(data)
+    const fetchCall = async (url, method, requestData) => {
         try {
-            // console.log(data ,'method accepted')
-            const response = await fetch('Model/handleBloodReq.php', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method: method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(requestData),
             });
+
             const responseData = await response.json();
             return responseData;
         } catch (error) {
             console.error('Error:', error);
             return error;
         }
-    }
+    };
+
+    const acceptReq = async (reqID, quantity, blood_group) => {
+        const requestData = {
+            request_id: reqID,
+            quantity: quantity,
+            blood_group: blood_group,
+            method: 'accept',
+            request_status: 'approved',
+        };
+
+        try {
+            const responseData = await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
+            console.log(responseData);
+            createNotification(responseData.status, () => {
+                location.reload(); // Reload the page after the notification
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const rejReq = async (reqID) => {
+        const requestData = {
+            request_id: reqID,
+            method: 'reject',
+        };
+
+        try {
+            await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
+            location.reload(); // Reload the page after rejecting the request
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
 </script>

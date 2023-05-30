@@ -12,14 +12,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js">
-  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>Notifications</title>
 </head>
 
 <body>
   <div class="container mt-5">
-    <h1 class="p-4 text-center font-weight-bold" >Notification Box</h1>
+    <h1 class="p-4 text-center font-weight-bold">Notification Box</h1>
+    <!-- <p>notification</p> -->
 
     <?php
     use DataSource\DataSource;
@@ -40,28 +40,28 @@
         $message = $notification['message'];
         $notFrom = $notification['notFrom'];
 
-        $notificationTypeClass = $notFrom === 'CakeNShape' ? 'alert-success' : 'alert-danger';
-        $notificationTitleIcon = $notFrom === 'CakeNShape' ? 'fas fa-user-shield' : 'fas fa-user';
+        $notificationTypeClass = $notFrom === 'BloodManagement' ? 'alert-success' : 'alert-danger';
+        $notificationTitleIcon = $notFrom === 'BloodManagement' ? 'fas fa-user-shield' : 'fas fa-user';
 
-        // Retrieve order details based on OrderID
-        $orderID = $notification['OrderID'];
-        $orderQuery = "SELECT * FROM Orders WHERE OrderID = ?";
-        $orderParamType = 'i';
-        $orderParamValue = array($orderID);
-        $orderResult = $con->select($orderQuery, $orderParamType, $orderParamValue);
+        // Retrieve donation details based on donation_id
+        $donationID = $notification['donation_id'];
+        $donationQuery = "SELECT * FROM blood_donation WHERE donation_id = ?";
+        $donationParamType = 's';
+        $donationParamValue = array($donationID);
+        $donationResult = $con->select($donationQuery, $donationParamType, $donationParamValue);
 
-        if (!empty($orderResult)) {
-          $order = $orderResult[0];
-          $orderDate = $order['OrderDate'];
-          $deliveryDate = $order['DeliveryDate'];
-          $paymentMethod = $order['PaymentMethod'];
-          $orderStatus = $order['OrderStatus'];
-
-          // Retrieve cake details from order_items table
-          $orderItemsQuery = "SELECT oi.*, c.* FROM Order_Items oi JOIN Cakes c ON oi.CakeID = c.CakeID WHERE oi.OrderID = ?";
-          $orderItemsParamType = 'i';
-          $orderItemsParamValue = array($orderID);
-          $orderItems = $con->select($orderItemsQuery, $orderItemsParamType, $orderItemsParamValue);
+        if (!empty($donationResult)) {
+          $donation = $donationResult[0];
+          $donationDate = $donation['donation_date'];
+          $lastDonatedDate = $donation['last_donated_date'];
+          $bloodGroup = $donation['blood_group'];
+          $quantity = $donation['quantity'];
+          $location = $donation['location'];
+          $donorName = $donation['donor_name'];
+          $contactNo = $donation['contact_no'];
+          $email = $donation['email'];
+          $age = $donation['age'];
+          $requestStatus = $donation['request_status'];
 
           ?>
 
@@ -81,30 +81,38 @@
                 <p class="card-text">
                   <?php echo $message; ?>
                 </p>
-                <div class="order-details">
-                  <p class="order-title">Order Details:</p>
-                  <p><i class="fas fa-id-badge"></i><span class="bold">Order ID:</span>
-                    <?php echo $orderID; ?>
+                <strong class="donation-title">Donation Details:</strong>
+                <div class="donation-details py-3">
+
+                  <p><i class="fas fa-calendar pr-2"></i> <span class="bold">Donation Date:</span>
+                    <?php echo $donationDate; ?>
                   </p>
-                  <p><i class="fas fa-box"></i> <span class="bold">Products:</span>
-                    <?php
-                    foreach ($orderItems as $orderItem) {
-                      $productName = $orderItem['CakeName'];
-                      echo $productName . ", ";
-                    }
-                    ?>
+                  <p><i class="fas fa-calendar-alt pr-2"></i> <span class="bold">Last Donated Date:</span>
+                    <?php echo $lastDonatedDate; ?>
                   </p>
-                  <p><i class="far fa-calendar-alt"></i><span class="bold"> Order Date:</span>
-                    <?php echo $orderDate; ?>
+                  <p><i class="fas fa-tint pr-2"></i> <span class="bold">Blood Group:</span>
+                    <?php echo $bloodGroup; ?>
                   </p>
-                  <p><i class="far fa-calendar-check"></i> <span class="bold">Delivery Date:</span>
-                    <?php echo $deliveryDate; ?>
+                  <p><i class="fas fa-box pr-2"></i> <span class="bold">Quantity:</span>
+                    <?php echo $quantity; ?>
                   </p>
-                  <p><i class="fas fa-credit-card"></i> <span class="bold">Payment Method:</span> 
-                    <?php echo $paymentMethod; ?>
+                  <p><i class="fas fa-map-marker-alt pr-2"></i> <span class="bold">Location:</span>
+                    <?php echo $location; ?>
                   </p>
-                  <p><i class="fas fa-info-circle"></i> <span class="bold"> Order Status:</span>
-                    <?php echo $orderStatus; ?>
+                  <p><i class="fas fa-user pr-2"></i> <span class="bold">Donor Name:</span>
+                    <?php echo $donorName; ?>
+                  </p>
+                  <p><i class="fas fa-phone pr-2"></i> <span class="bold">Contact No:</span>
+                    <?php echo $contactNo; ?>
+                  </p>
+                  <p><i class="fas fa-envelope pr-2"></i> <span class="bold">Email:</span>
+                    <?php echo $email; ?>
+                  </p>
+                  <p><i class="fas fa-user-clock pr-2"></i> <span class="bold">Age:</span>
+                    <?php echo $age; ?>
+                  </p>
+                  <p><i class="fas fa-info-circle pr-2"></i> <span class="bold">Request Status:</span>
+                    <?php echo $requestStatus; ?>
                   </p>
                 </div>
               </div>
@@ -113,7 +121,7 @@
 
           <?php
         } else {
-          echo "<strong>No order found for notification</strong>";
+          echo "<strong>No donation found for notification</strong>";
         }
       }
     } else {
@@ -126,7 +134,7 @@
   <script>
     const delNotification = (notID) => {
 
-      fetch('/CakeNShape/Model/handleNotification.php', {
+      fetch('/BBM/Model/handleNotification.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -136,7 +144,7 @@
         .then(response => response.text())
         .then(data => {
           console.log('Response:', data);
-          location.reload();
+          // location.reload();
         })
         .catch(error => {
           console.error('Error:', error);
