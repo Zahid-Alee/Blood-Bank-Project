@@ -89,34 +89,34 @@ $username = $_SESSION['username']; ?>
   });
 
 
-  const searchInput = document.querySelector('input[type="search"]');
-  const searchSuggestions = document.querySelector('.search-suggestions');
+  // const searchInput = document.querySelector('input[type="search"]');
+  // const searchSuggestions = document.querySelector('.search-suggestions');
 
-  const searchOptionLinks = document.querySelectorAll('.search-option');
+  // const searchOptionLinks = document.querySelectorAll('.search-option');
 
   // Show search options dropdown when search button is clicked
-  document.querySelector('.nav-link.dropdown-toggle').addEventListener('click', function () {
-    document.querySelector('.dropdown-menu').classList.toggle('show');
-  });
+  // document.querySelector('.nav-link.dropdown-toggle').addEventListener('click', function () {
+  //   document.querySelector('.dropdown-menu').classList.toggle('show');
+  // });
 
   // Add click event listeners to search option links
-  searchOptionLinks.forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
+  // searchOptionLinks.forEach(function (link) {
+  //   link.addEventListener('click', function (event) {
+  //     event.preventDefault();
 
-      // Update search input placeholder text based on selected option
-      searchInput.setAttribute('placeholder', 'Search by ' + this.dataset.type);
+  //     // Update search input placeholder text based on selected option
+  //     searchInput.setAttribute('placeholder', 'Search by ' + this.dataset.type);
 
-      // Add selected option class to search bar
-      document.querySelector('.search-bar').classList.add(this.dataset.type);
+  //     // Add selected option class to search bar
+  //     document.querySelector('.search-bar').classList.add(this.dataset.type);
 
-      // Show search suggestions
-      searchSuggestions.classList.add('show');
+  //     // Show search suggestions
+  //     searchSuggestions.classList.add('show');
 
-      // Focus on search input
-      searchInput.focus();
-    });
-  });
+  //     // Focus on search input
+  //     searchInput.focus();
+  //   });
+  // });
 
   // Hide search options dropdown when clicked outside of it
   document.addEventListener('click', function (event) {
@@ -127,55 +127,55 @@ $username = $_SESSION['username']; ?>
   });
 
   // Clear search input and suggestions
-  searchInput.value = '';
-  searchSuggestions.innerHTML = '';
+  // searchInput.value = '';
+  // searchSuggestions.innerHTML = '';
 
   // Hide search suggestions
-  searchSuggestions.classList.remove('show');
+  // searchSuggestions.classList.remove('show');
 
   // Remove selected option class from search bar
-  document.querySelector('.search-bar').classList.remove(link.dataset.type);
+  // document.querySelector('.search-bar').classList.remove(link.dataset.type);
 
 
   // Fetch data from the server and display search suggestions
-  searchInput.addEventListener('input', function () {
-    const query = this.value;
-    if (query.trim().length > 0) {
-      fetch('/search?q=' + query)
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            searchSuggestions.innerHTML = '';
-            data.forEach(item => {
-              const li = document.createElement('li');
-              li.classList.add('list-group-item');
-              li.textContent = item.name;
-              searchSuggestions.appendChild(li);
-            });
-            searchSuggestions.classList.add('show');
-          } else {
-            searchSuggestions.innerHTML = '<li class="list-group-item">No results found</li>';
-            searchSuggestions.classList.add('show');
-          }
-        })
-        .catch(error => console.error(error));
-    } else {
-      searchSuggestions.innerHTML = '';
-      searchSuggestions.classList.remove('show');
-    }
-  });
+  // searchInput.addEventListener('input', function () {
+  //   const query = this.value;
+  //   if (query.trim().length > 0) {
+  //     fetch('/search?q=' + query)
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         if (data.length > 0) {
+  //           searchSuggestions.innerHTML = '';
+  //           data.forEach(item => {
+  //             const li = document.createElement('li');
+  //             li.classList.add('list-group-item');
+  //             li.textContent = item.name;
+  //             searchSuggestions.appendChild(li);
+  //           });
+  //           searchSuggestions.classList.add('show');
+  //         } else {
+  //           searchSuggestions.innerHTML = '<li class="list-group-item">No results found</li>';
+  //           searchSuggestions.classList.add('show');
+  //         }
+  //       })
+  //       .catch(error => console.error(error));
+  //   } else {
+  //     searchSuggestions.innerHTML = '';
+  //     searchSuggestions.classList.remove('show');
+  //   }
+  // });
 
   // Add submit event listener to search form
-  document.querySelector('.search-bar form').addEventListener('submit', function (event) {
-    event.preventDefault();
+  // document.querySelector('.search-bar form').addEventListener('submit', function (event) {
+  //   event.preventDefault();
 
-    // Get selected option class from search bar
-    const searchType = document.querySelector('.search-bar').classList[1];
+  //   // Get selected option class from search bar
+  //   const searchType = document.querySelector('.search-bar').classList[1];
 
-    // Get search query
-    const searchQuery = searchInput.value.trim();
+  //   // Get search query
+  //   const searchQuery = searchInput.value.trim();
 
-    // Redirect to search results page with selected option and query parameters
-    window.location.href = '/search?type=' + searchType + '&q=' + searchQuery;
-  });
+  //   // Redirect to search results page with selected option and query parameters
+  //   window.location.href = '/search?type=' + searchType + '&q=' + searchQuery;
+  // });
 </script>

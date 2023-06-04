@@ -149,7 +149,10 @@
 
         try {
             await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
-            location.reload(); // Reload the page after rejecting the request
+            createNotification(responseData.status, () => {
+                location.reload(); // Reload the page after the notification
+            });
+            // location.reload(); // Reload the page after rejecting the request
         } catch (error) {
             console.error('Error:', error);
         }

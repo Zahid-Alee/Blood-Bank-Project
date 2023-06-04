@@ -35,8 +35,7 @@ CREATE TABLE
         `age` int(11) NOT NULL,
         `request_status` varchar(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (`userID`) REFERENCES users(`userID`),
-        PRIMARY KEY(`donation_id`,`userID`)
-
+        PRIMARY KEY(`donation_id`, `userID`)
     );
 
 CREATE TABLE
@@ -58,4 +57,14 @@ CREATE TABLE
         FOREIGN KEY (`donation_id`) REFERENCES blood_donation (`donation_id`),
         FOREIGN KEY (`userID`) REFERENCES users(`userID`),
         PRIMARY KEY(notID, donation_id, userID)
+    );
+
+CREATE TABLE
+    Feedback (
+        `FeedbackID` INT PRIMARY KEY AUTO_INCREMENT,
+        `email` varchar(255) NOT NULL,
+        `username` varchar(50) NULL,
+        `phone` DECIMAL NOT NULL,
+        `FeedbackText` TEXT NOT NULL,
+        `FeedbackDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
