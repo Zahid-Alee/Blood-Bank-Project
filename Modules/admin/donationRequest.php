@@ -11,7 +11,7 @@
 
 </div>
 <table class="table table-striped table-bordered">
-  <h3 class="page-heading">Blood Requests</h3>
+  <h3 class="page-heading">Donation Requests</h3>
   <thead class="thead-dark">
     <tr>
       <th scope="col" class='text-center'><i class="fas fa-user"></i> Name</th>
@@ -130,9 +130,9 @@
     try {
       const responseData = await fetchCall('Model/handleDonationReq.php', 'POST', requestData);
       console.log(responseData);
-      createNotification(responseData.status, responseData.message, () => {
+      // createNotification('sucess', 'Your Request Has been Accepted' () => {
         location.reload(); // Reload the page after the notification
-      });
+      // });
     } catch (error) {
       console.error('Error:', error);
     }

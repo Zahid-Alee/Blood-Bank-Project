@@ -36,6 +36,7 @@
     $notifications = $con->select($query, $paramType, $paramValue);
 
     if (!empty($notifications)) {
+      $countNoti=count($notifications);
       foreach ($notifications as $notification) {
         $message = $notification['message'];
         $notFrom = $notification['notFrom'];
@@ -114,6 +115,9 @@
                   <p><i class="fas fa-info-circle pr-2"></i> <span class="bold">Request Status:</span>
                     <?php echo $requestStatus; ?>
                   </p>
+                  <div class="text-center mt-3 toggle-icon"  onclick="toggleOrderDetails(this)">
+                  <i class="fa fa-chevron-down toggle-details"></i>
+                </div>
                 </div>
               </div>
             </div>
@@ -132,6 +136,11 @@
 
 
   <script>
+
+function toggleOrderDetails(icon) {
+      var orderDetails = icon.parentElement.parentElement.querySelector('.order-details');
+      orderDetails.classList.toggle('show');
+    }
     const delNotification = (notID) => {
 
       fetch('/BBM/Model/handleNotification.php', {
@@ -144,7 +153,7 @@
         .then(response => response.text())
         .then(data => {
           console.log('Response:', data);
-          // location.reload();
+          location.reload();
         })
         .catch(error => {
           console.error('Error:', error);

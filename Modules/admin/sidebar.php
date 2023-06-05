@@ -21,7 +21,7 @@
       <i class='bx bxs-chevron-down arrow'></i>
     </div>
     <ul class="sub-menu">
-      <li><a class="link_name" href="#">Category</a></li>
+      <li><a class="link_name" href="#">Requests</a></li>
       <a class="nav-link" href="?link=bloodRequest">
         <li style="list-style:disc"> Blood Requests
         </li>
@@ -55,12 +55,43 @@
   </li>
 
   <li>
+    <div class="iocn-link">
+      <a href="#">
+        <i class='bx bx-history'></i>
+        <span class="link_name">History</span>
+      </a>
+      <i class='bx bxs-chevron-down arrow'></i>
+    </div>
+    <ul class="sub-menu">
+      <li><a class="link_name" href="#">History</a></li>
+      <a class="nav-link" href="?link=donationsHistory" >
+        <li style="list-style:disc"> Donations
+        </li>
+        <a class="nav-link" href="?link=donorHealth">
+
+          <li style="list-style:disc">Donor Health  </li>
+
+        </a>
+      </a>
+    </ul>
+  </li>
+  <!-- <li>
     <a href="?link=donationsHistory">
     <i class="bx bx-history"></i>
       <span class="link_name ">History</span>
     </a>
     <ul class="sub-menu blank">
       <li><a class="link_name" href="?link=donationsHistory">History</a></li>
+    </ul>
+  </li> -->
+ 
+  <li>
+    <a href="?link=userFeedback">
+    <i class="bx bx-chat"></i>
+      <span class="link_name ">User Feedbacks</span>
+    </a>
+    <ul class="sub-menu blank">
+      <li><a class="link_name" href="?link=userFeedback">User Feedbacks</a></li>
     </ul>
   </li>
   <li>

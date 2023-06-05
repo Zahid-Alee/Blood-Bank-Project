@@ -46,10 +46,12 @@
         .then(response => response.text())
         .then(data => {
             console.log('Success:', data);
-            // location.reload();
+            location.reload();
+
         })
         .catch((error) => {
             console.error('Error:', error);
+            location.reload();
         });
     }
 </script>

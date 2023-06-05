@@ -2,12 +2,12 @@
   <form id="requestBlood" method="post">
     <input type="text" name="request_id" value="<?php echo uniqid('request-') ?>" hidden>
     <div class="form-group">
-      <label for="donorName"><i class="fas fa-user"></i> Hospital Name</label>
-      <input type="text" class="form-control" name="hospital_name" placeholder="Enter your name">
+      <label for="donorName"><i class="fas fa-hospital"></i> Hospital Name</label>
+      <input type="text" class="form-control" name="hospital_name" placeholder="Enter Hospital Name" required>
     </div>
     <div class="form-group">
       <label for="bloodType"><i class="fas fa-notes-medical"></i> Blood Type</label>
-      <select class="form-control" name="blood_group">
+      <select class="form-control" name="blood_group" required>
         <option value="" disabled selected>Select blood type</option>
         <option value="A+">A+</option>
         <option value="A-">A-</option>
@@ -21,17 +21,18 @@
     </div>
     <div class="form-group">
       <label for="donorAge"><i class="fas fa-male"></i> Quantity</label>
-      <input type="number" class="form-control" name="quantity"  min='1' placeholder="Enter your age">
+      <input type="number" class="form-control" name="quantity" min='1' placeholder="Enter Quantity" required>
     </div>
     <div class="form-group">
       <label for="donorAge"><i class="fas fa-male"></i>Contact</label>
-      <input type="number" class="form-control" name="contact_no" placeholder="Enter your age">
+      <input type="number" class="form-control" max="11" name="contact_no" placeholder="Enter your Contact" required>
     </div>
     <div class="form-group">
       <label for="donorAge"><i class="fas fa-male"></i> location</label>
-      <input type="text" class="form-control" name="location" placeholder="Enter your age">
+      <input type="text" class="form-control" name="location" placeholder="Enter your Location" required>
     </div>
-    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2 "><i class="fas fa-paper-plane"></i> Submit</button>
+    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2 "><i class="fas fa-paper-plane"></i>
+      Submit</button>
   </form>
 </div>
 
@@ -45,12 +46,13 @@
 
 
     fetch('http://localhost/BBM/Model/makeRequest.php', {
-        method: 'POST',
-        body: formValues
-      })
+      method: 'POST',
+      body: formValues
+    })
       .then(response => response.text())
       .then(data => {
         console.log('Success:', data);
+        location.reload();
 
       })
       .catch((error) => {

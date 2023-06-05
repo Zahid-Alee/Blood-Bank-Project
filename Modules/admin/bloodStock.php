@@ -1,6 +1,6 @@
 <div class="alerts-notifications">
     <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
-        Success message here
+       Stock Has Been Deleted Successfully
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 

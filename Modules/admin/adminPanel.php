@@ -57,7 +57,12 @@
       } elseif ($link == 'donationsHistory') {
         include 'checkHistory.php';
       }
-
+      elseif ($link == 'donorHealth') {
+        include 'donorHealth.php';
+      }
+      elseif ($link == 'userFeedback') {
+        include 'feedback.php';
+      }
       ?>
     </div>
     <div id="preloader">

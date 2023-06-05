@@ -1,9 +1,12 @@
 CREATE TABLE
-    Feedback (
-        `FeedbackID` INT PRIMARY KEY AUTO_INCREMENT,
-        `email` varchar(255) NOT NULL,
-        `username` varchar(50) NULL,
-        `phone` DECIMAL NOT NULL,
-        `FeedbackText` TEXT NOT NULL,
-        `FeedbackDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    user_notifications (
+        `notID` INT(11) AUTO_INCREMENT,
+        `donation_id` varchar(100) NULL,
+        `userID` int(11) NOT NULL,
+        `notDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        `message` VARCHAR(150) NULL,
+        `notFrom` VARCHAR(30) NULL,
+        FOREIGN KEY (`donation_id`) REFERENCES blood_donation (`donation_id`),
+        FOREIGN KEY (`userID`) REFERENCES users(`userID`),
+        PRIMARY KEY(notID, donation_id, userID)
     );

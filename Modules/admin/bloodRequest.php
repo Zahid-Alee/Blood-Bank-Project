@@ -115,6 +115,7 @@
 
             const responseData = await response.json();
             return responseData;
+            // location.reload();
         } catch (error) {
             console.error('Error:', error);
             return error;
@@ -132,10 +133,10 @@
 
         try {
             const responseData = await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
-            console.log(responseData);
             createNotification(responseData.status, () => {
                 location.reload(); // Reload the page after the notification
             });
+            location.reload()
         } catch (error) {
             console.error('Error:', error);
         }
@@ -150,9 +151,9 @@
         try {
             await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
             createNotification(responseData.status, () => {
-                location.reload(); // Reload the page after the notification
+                // location.reload(); // Reload the page after the notification
             });
-            // location.reload(); // Reload the page after rejecting the request
+            location.reload(); // Reload the page after rejecting the request
         } catch (error) {
             console.error('Error:', error);
         }

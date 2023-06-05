@@ -49,7 +49,7 @@ CREATE TABLE
 CREATE TABLE
     user_notifications (
         `notID` INT(11) AUTO_INCREMENT,
-        `donation_id` varchar(100) NOT NULL,
+        `donation_id` varchar(100) NULL,
         `userID` int(11) NOT NULL,
         `notDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         `message` VARCHAR(150) NULL,
@@ -64,7 +64,7 @@ CREATE TABLE
         `FeedbackID` INT PRIMARY KEY AUTO_INCREMENT,
         `email` varchar(255) NOT NULL,
         `username` varchar(50) NULL,
-        `phone` DECIMAL NOT NULL,
+        `phone` VARCHAR(15) NOT NULL,
         `FeedbackText` TEXT NOT NULL,
         `FeedbackDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );

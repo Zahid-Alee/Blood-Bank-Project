@@ -1,22 +1,19 @@
-<div class="history-container">
-    <h3 class="py-4 text-center font-weight-bold">Blood Donation History</h3>
+<div class="feedback-container">
+    <h3 class="py-4 text-center font-weight-bold">User Feedback</h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Donor Name</th>
-                    <th>Age</th>
+                    <th>Feedback ID</th>
                     <th>Email</th>
-                    <th>Contact No</th>
-                    <th>Location</th>
-                    <th>Blood Group</th>
-                    <th>Quantity (ml)</th>
-                    <th>Donation Date</th>
-
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>Feedback Text</th>
+                    <th>Feedback Date</th>
                 </tr>
             </thead>
-            <tbody id="donationTableBody">
-                <!-- Donation records will be dynamically added here -->
+            <tbody id="feedbackTableBody">
+                <!-- Feedback records will be dynamically added here -->
             </tbody>
         </table>
     </div>
@@ -25,34 +22,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-xxx"
     crossorigin="anonymous"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', loadDonationData);
+    document.addEventListener('DOMContentLoaded', loadFeedbackData);
 
-    function loadDonationData() {
-        fetch('Model/donationHistory.php')
+    function loadFeedbackData() {
+        fetch('Model/userFeedback.php')
             .then(response => response.json())
-            .then(data => populateDonationTable(data))
-            .catch(error => console.error('Error fetching donation data:', error));
+            .then(data => populateFeedbackTable(data))
+            .catch(error => console.error('Error fetching feedback data:', error));
     }
 
-    function populateDonationTable(data) {
-        const donationTableBody = document.getElementById('donationTableBody');
-        donationTableBody.innerHTML = '';
+    function populateFeedbackTable(data) {
+        const feedbackTableBody = document.getElementById('feedbackTableBody');
+        feedbackTableBody.innerHTML = '';
 
         data.forEach(record => {
             const row = document.createElement('tr');
             row.innerHTML = `
-            <td>${record.donor_name}</td>
-            <td>${record.age}</td>
-            <td>${record.email}</td>
-            <td>${record.contact_no}</td>
-            <td>${record.location}</td>
-            <td>${record.blood_group}</td>
-            <td>${record.quantity}</td>
-            <td>${record.donation_date}</td>
-               
-             
-            `;
-            donationTableBody.appendChild(row);
+        <td>${record.FeedbackID}</td>
+        <td>${record.email}</td>
+        <td>${record.username || '-'}</td>
+        <td>${record.phone}</td>
+        <td>${record.FeedbackText}</td>
+        <td>${record.FeedbackDate}</td>
+      `;
+            feedbackTableBody.appendChild(row);
         });
     }
 </script>

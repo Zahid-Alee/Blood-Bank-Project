@@ -17,8 +17,8 @@ class BloodManagement
     {
         session_start();
 
-        $query = 'INSERT INTO blood_donation (donation_id,userID,donor_name,age, blood_group, last_donated_date, quantity,contact_no, email, location) VALUES(?,?,?,?,?,?,?,?,?,?)';
-        $paramType = 'ssssssssss';
+        $query = 'INSERT INTO blood_donation (donation_id,userID,donor_name,age, blood_group, last_donated_date, quantity,contact_no, email, location,medical_history) VALUES(?,?,?,?,?,?,?,?,?,?,?)';
+        $paramType = 'sssssssssss';
         $paramValue = array(
             $_POST["donation_id"],
             $_SESSION['userID'],
@@ -30,6 +30,8 @@ class BloodManagement
             $_POST["contact_no"],
             $_POST["email"],
             $_POST["location"],
+            $_POST["medical_history"],
+
         );
         $donorID = $this->conn->insert($query, $paramType, $paramValue);
         if (!empty($donorID)) {

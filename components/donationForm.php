@@ -8,8 +8,8 @@
     Not Enough Blood For This Blood Type
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-
 </div>
+
 <div class="card-body">
   <form id="bloodDonationForm" method="post">
     <input type="text" name="donation_id" value="<?php echo uniqid('donor-') ?>" hidden>
@@ -22,10 +22,9 @@
       <input type="number" class="form-control" name="age" min='18' max="40" placeholder="Enter your age" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> last donated date</label>
+      <label for="donorAge"><i class="fas fa-male"></i> Last Donated Date</label>
       <input type="date" class="form-control" name="last_donated_date" placeholder="Enter last donated date" required>
     </div>
-
     <div class="form-group">
       <label for="bloodType"><i class="fas fa-notes-medical"></i> Blood Type</label>
       <select class="form-control" name="blood_group" required>
@@ -41,26 +40,32 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> Quantity</label>
-      <input type="number" class="form-control" name="quantity" min='1' max="4" placeholder="Enter your age" required>
+      <label for="donationQuantity"><i class="fas fa-tint"></i> Quantity (ml)</label>
+      <input type="number" class="form-control" name="quantity" min="1" max="400" placeholder="Enter the quantity in milliliters" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> Donor contact</label>
-      <input type="number" class="form-control" name="contact_no" placeholder="Enter your age" required>
+      <label for="donorContact"><i class="fas fa-phone"></i> Donor Contact</label>
+      <input type="number" class="form-control" max="11" name="contact_no" placeholder="Enter your contact number" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> Donor email</label>
-      <input type="email" class="form-control" name="email" placeholder="Enter your age" required>
+      <label for="donorEmail"><i class="fas fa-envelope"></i> Donor Email</label>
+      <input type="email" class="form-control" name="email" placeholder="Enter your email address" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> location</label>
-      <input type="text" class="form-control" name="location" placeholder="Enter your age" required>
+      <label for="donorLocation"><i class="fas fa-map-marker-alt"></i> Location</label>
+      <input type="text" class="form-control" name="location" placeholder="Enter your location" required>
     </div>
 
-    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2 "><i class="fas fa-paper-plane"></i>
-      Submit</button>
+    <!-- Donor's Medical Health History -->
+    <div class="form-group">
+      <label for="medical_history"><i class="fas fa-notes-medical"></i> Medical Health History</label>
+      <textarea class="form-control" name="medical_history" rows="5" placeholder="Enter your medical health history"></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2"><i class="fas fa-paper-plane"></i> Submit</button>
   </form>
 </div>
+
 
 <style>
   label {
