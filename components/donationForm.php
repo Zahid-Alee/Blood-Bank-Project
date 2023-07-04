@@ -14,19 +14,19 @@
   <form id="bloodDonationForm" method="post">
     <input type="text" name="donation_id" value="<?php echo uniqid('donor-') ?>" hidden>
     <div class="form-group">
-      <label for="donorName"><i class="fas fa-user"></i> Donor Name</label>
+      <label for="donorName">Full Name</label>
       <input type="text" class="form-control" name="donor_name" placeholder="Enter your name" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> Donor Age</label>
+      <label for="donorAge">Age</label>
       <input type="number" class="form-control" name="age" min='18' max="40" placeholder="Enter your age" required>
     </div>
     <div class="form-group">
-      <label for="donorAge"><i class="fas fa-male"></i> Last Donated Date</label>
+      <label for="donorAge">Last Donated At</label>
       <input type="date" class="form-control" name="last_donated_date" placeholder="Enter last donated date" required>
     </div>
     <div class="form-group">
-      <label for="bloodType"><i class="fas fa-notes-medical"></i> Blood Type</label>
+      <label for="bloodType">Blood Group</label>
       <select class="form-control" name="blood_group" required>
         <option value="" disabled selected>Select blood type</option>
         <option value="A+">A+</option>
@@ -40,29 +40,32 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="donationQuantity"><i class="fas fa-tint"></i> Quantity (ml)</label>
-      <input type="number" class="form-control" name="quantity" min="1" max="400" placeholder="Enter the quantity in milliliters" required>
+      <label for="donationQuantity">Quantity (ml)</label>
+      <input type="number" class="form-control" name="quantity" min="460" max="500"
+        placeholder="Enter the quantity in milliliters" required>
     </div>
     <div class="form-group">
-      <label for="donorContact"><i class="fas fa-phone"></i> Donor Contact</label>
-      <input type="number" class="form-control" max="11" name="contact_no" placeholder="Enter your contact number" required>
+      <label for="donorContact">Donor Contact</label>
+      <input type="number" class="form-control" name="contact_no" placeholder="Enter your contact number" required>
     </div>
     <div class="form-group">
-      <label for="donorEmail"><i class="fas fa-envelope"></i> Donor Email</label>
+      <label for="donorEmail">Donor Email</label>
       <input type="email" class="form-control" name="email" placeholder="Enter your email address" required>
     </div>
     <div class="form-group">
-      <label for="donorLocation"><i class="fas fa-map-marker-alt"></i> Location</label>
-      <input type="text" class="form-control" name="location" placeholder="Enter your location" required>
+      <label for="donorLocation">Address</label>
+      <input type="text" class="form-control" name="location" placeholder="Enter your address" required>
     </div>
 
     <!-- Donor's Medical Health History -->
     <div class="form-group">
-      <label for="medical_history"><i class="fas fa-notes-medical"></i> Medical Health History</label>
-      <textarea class="form-control" name="medical_history" rows="5" placeholder="Enter your medical health history"></textarea>
+      <label for="medical_history">Medical Health History</label>
+      <textarea class="form-control" name="medical_history" rows="5"
+        placeholder="Enter your medical health history"></textarea>
     </div>
 
-    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2"><i class="fas fa-paper-plane"></i> Submit</button>
+    <button type="submit" id="submit-btn" class="btn btn-danger closeModalBtn2"><i class="fas fa-paper-plane"></i>
+      Submit</button>
   </form>
 </div>
 
@@ -92,9 +95,78 @@
 
   const form = document.getElementById('bloodDonationForm');
   form.addEventListener('submit', submitBloodDonationForm);
+  function validateForm() {
+    const donorNameInput = document.querySelector('input[name="donor_name"]');
+    const lastDonatedDateInput = document.querySelector('input[name="last_donated_date"]');
+    const contactNumberInput = document.querySelector('input[name="contact_no"]');
+    const emailInput = document.querySelector('input[name="email"]');
+    const medicalHistoryInput = document.querySelector('textarea[name="medical_history"]');
+
+    const donorName = donorNameInput.value.trim();
+    const lastDonatedDate = new Date(lastDonatedDateInput.value);
+    const contactNumber = contactNumberInput.value.trim();
+    const email = emailInput.value.trim();
+    const medicalHistory = medicalHistoryInput.value.trim();
+
+    // Validation rules
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const contactNumberRegex = /^\d{11}$/;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const currentDate = new Date();
+    const minimumGapMonths = 4;
+    const minimumGapMilliseconds = minimumGapMonths * 30 * 24 * 60 * 60 * 1000;
+
+    // Validate donor name
+    if (!nameRegex.test(donorName)) {
+      alert('Invalid donor name. Name must contain only alphabetic characters and spaces.');
+      donorNameInput.focus();
+      return false;
+    }
+
+    // Validate last donated date
+    if (currentDate - lastDonatedDate < minimumGapMilliseconds) {
+      alert('You must wait at least 4 months before donating again.');
+      lastDonatedDateInput.focus();
+      return false;
+    }
+
+    // Validate contact number
+    if (!contactNumberRegex.test(contactNumber)) {
+      alert('Invalid contact number. Contact number must contain 11 digits.');
+      contactNumberInput.focus();
+      return false;
+    }
+
+    // Validate email
+    if (!emailRegex.test(email)) {
+      alert('Invalid email address.');
+      emailInput.focus();
+      return false;
+    }
+
+    // Validate medical history
+    // Allow alphabets, spaces, digits, and special characters in medical history
+    // Modify the regex pattern based on your specific requirements
+    const medicalHistoryRegex = /^[\w\s\d]+$/;
+    if (!medicalHistoryRegex.test(medicalHistory)) {
+      alert('Invalid medical history. Medical history can contain alphabets, spaces, digits, and special characters.');
+      medicalHistoryInput.focus();
+      return false;
+    }
+
+    return true;
+  }
+
+  // Rest of the code remains the same
+
 
   function submitBloodDonationForm(event) {
     event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     const formValues = new FormData(event.target);
     fetch('http://localhost/BBM/Model/insertDonor.php', {
       method: 'POST',
@@ -106,13 +178,13 @@
         createNotification('success', () => {
           location.reload(); // Reload the page after the notification
         });
-
       })
       .catch((error) => {
-        console.error('error:', error);
-        createNotification(responseData.status, () => {
+        console.error('Error:', error);
+        createNotification('error', () => {
           location.reload(); // Reload the page after the notification
         });
       });
   }
+
 </script>

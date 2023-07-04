@@ -27,7 +27,7 @@
         <div id="donation-popup" class="popup">
             <div class="popup-content">
                 <div class="popup-header">
-                    <h2>Donate Blood Form</h2>
+                    <h2>Blood Donation Form</h2>
                     <span class="close-donation">&times;</span>
                 </div>
                 <div class="popup-body">
@@ -39,7 +39,7 @@
         <div id="request-popup" class="popup">
             <div class="popup-content">
                 <div class="popup-header">
-                    <h2>Request Blood From </h2>
+                    <h2>Blood Request Form </h2>
                     <span class="close-request">&times;</span>
                 </div>
                 <div class="popup-body">

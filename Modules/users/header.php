@@ -37,9 +37,13 @@
                         <button id='openModalBtn' class="donate-now-btn btn btn-danger btn-lg mr-3" data-toggle="modal" data-target="#exampleModalLong">
                             <i class="fas fa-heart"></i> Donate Now
                         </button>
-                        <button href="#" class="btn btn-danger btn-lg mr-3">
+                       
+                        <a href="Modules/users/about.php" style='text-decoration:none; color:inherit'>
+                        <button  class="btn btn-danger btn-lg mr-3">
                             <i class="fas fa-info-circle"></i> Learn More
                         </button>
+                        </a>
+                        
                     </div>
             </div>
         </div>

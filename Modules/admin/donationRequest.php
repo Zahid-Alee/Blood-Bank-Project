@@ -131,7 +131,7 @@
       const responseData = await fetchCall('Model/handleDonationReq.php', 'POST', requestData);
       console.log(responseData);
       // createNotification('sucess', 'Your Request Has been Accepted' () => {
-        location.reload(); // Reload the page after the notification
+      location.reload(); // Reload the page after the notification
       // });
     } catch (error) {
       console.error('Error:', error);
@@ -147,7 +147,7 @@
     try {
       const responseData = await fetchCall('Model/handleDonationReq.php', 'POST', requestData);
       console.log(responseData);
-      createNotification(responseData.status, responseData.message, () => {
+      createNotification('success', 'Rejected Donation Request', () => {
         location.reload(); // Reload the page after the notification
       });
     } catch (error) {

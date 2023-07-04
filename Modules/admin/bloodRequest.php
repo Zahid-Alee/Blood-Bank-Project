@@ -113,7 +113,7 @@
                 body: JSON.stringify(requestData),
             });
 
-            const responseData = await response.json();
+            const responseData = await response.text();
             return responseData;
             // location.reload();
         } catch (error) {
@@ -134,11 +134,11 @@
         try {
             const responseData = await fetchCall('Model/handleBloodReq.php', 'POST', requestData);
             createNotification(responseData.status, () => {
-                location.reload(); // Reload the page after the notification
+                // location.reload(); // Reload the page after the notification
             });
-            location.reload()
+            // location.reload()
         } catch (error) {
-            console.error('Error:', error);
+            // console.error('Error:', error);
         }
     };
 

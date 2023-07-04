@@ -11,25 +11,31 @@ class BloodManagement
         $this->conn = new DataSource();
     }
 
-    public function createAdminNotification($donation_id)
-    {
-        $query = "SELECT userID FROM blood_donation WHERE donation_id = ?";
-        $paramType = "s";
-        $paramValue = array($donation_id);
-        $user = $this->conn->select($query, $paramType, $paramValue);
+    public function createAdminNotification($id)
+{
+    $query = "SELECT userID FROM blood_donation WHERE donation_id = ?";
+    $paramType = "s";
+    $paramValue = array($id);
+    $user = $this->conn->select($query, $paramType, $paramValue);
 
-        if (!empty($user)) {
-            $userID = $user[0]['userID'];
+    if (!empty($user)) {
+        $userID = $user[0]['userID'];
 
-            $message = "Your Blood Request Has Been Accepted";
-            $query = "INSERT INTO user_notifications(donation_id, userID, message, notFrom) VALUES (?, ?, ?, ?)";
-            $paramType = 'siss';
-            $paramValue = array($donation_id, $userID, $message, 'Blood_Bank');
-            return $this->conn->insert($query, $paramType, $paramValue);
+        $message = "Your Blood Request Has Been Accepted";
+        $query = "INSERT INTO user_notifications (donation_id, userID, message, notFrom) VALUES (?, ?, ?, ?)";
+        $paramType = 'siss';
+        $paramValue = array($id, $userID, $message, 'Blood_Bank');
+
+        $insertedID = $this->conn->insert($query, $paramType, $paramValue);
+        if (!empty($insertedID)) {
+            return $insertedID;
         } else {
-            return "User not found";
+            return "Failed to insert notification data.";
         }
+    } else {
+        return "User not found";
     }
+}
 
     public function acceptReq($request_id, $blood_group, $quantity, $request_status)
     {

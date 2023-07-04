@@ -43,9 +43,30 @@
   }
 </style>
 <?php session_start();
-$username = $_SESSION['username']; ?>
+$username = $_SESSION['username'];
+$id = $_SESSION['userID'];
+use DataSource\DataSource;
+
+require_once __DIR__ . '../../../lib/DataSource.php';
+
+$con = new DataSource;
+// Retrieve the cake details based on the CakeID
+
+$query = "SELECT * FROM user_notifications WHERE userID = ?";
+$paramType = "i";
+$paramValue = array($id);
+$notifications = $con->select($query, $paramType, $paramValue);
+
+if (!empty($notifications)) {
+  $notCount = count($notifications);
+} else {
+  $notCount = 0;
+}
+
+
+?>
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light" style="backgroud:transparent">
-  <a class="navbar-brand" href="#">Logo</a>
+  <a class="navbar-brand" href="#"><img src="BBM/Module/users/images/blood.png" alt=""></a>
   <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -56,13 +77,13 @@ $username = $_SESSION['username']; ?>
         <a class="nav-link" href="/BBM"><i class="fas fa-home"></i> Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Modules/users/about.php"><i class="fas fa-envelope"></i> About Us</a>
+        <a class="nav-link about-us-link" href="Modules/users/about.php"><i class="fas fa-info-circle"></i> About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Modules/users/notification.php"><i class="fas fa-envelope"></i> Notifications</a>
+        <a class="nav-link" href="/BBM/Modules/users/notification.php"><i class="fas fa-envelope"></i> Notifications <sup class='text-danger'> <strong><?php echo $notCount ?></strong></sup></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-bell"></i> Contact Us</a>
+        <a class="nav-link contact-us-link" href="#contact"><i class="fas fa-bell"></i> Contact Us</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i>
@@ -82,11 +103,6 @@ $username = $_SESSION['username']; ?>
   });
 
   // Hide search options dropdown when clicked outside of it
-  document.addEventListener('click', function (event) {
-    const dropdown = document.querySelector('.dropdown-menu');
-    if (dropdown.classList.contains('show') && !dropdown.contains(event.target)) {
-      dropdown.classList.remove('show');
-    }
-  });
+
 
 </script>

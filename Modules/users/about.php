@@ -12,6 +12,13 @@
       margin-top: 80px;
     }
 
+
+    .contact-us-link,
+    .about-us-link {
+      display: none;
+    }
+
+
     css Copy code .svg-img {
       width: 100%;
       max-width: 400px;
