@@ -72,6 +72,10 @@ if (!empty($notifications)) {
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNav">
+
+
+  <div id="logo" style="background-color: white;border-radius:50%;">
+<img width="100" src="assets/rb_21622.png" alt="">  </div>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="/BBM"><i class="fas fa-home"></i> Home</a>

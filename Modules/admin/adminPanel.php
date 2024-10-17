@@ -31,15 +31,16 @@
   </div>
   <section class="home-section">
     <div class="home-content" style=" font-size:35px">
-      <i class='bx bx-menu' style="color:#c41818;"></i>
+      <div>
+        <i class='bx bx-menu' style="color:#c41818;"></i>
+        <strong> Blood Bank Management
+        </strong>
+      </div>
       <strong class="text-capitalize px-3" style="color:#c41818; font-size:16px ;">
         <?php echo $_SESSION['username'] ?>
         <a href="logout.php" class='text-dark'><i class='bx bx-log-out px-3'></i></a>
 
         </span>
-
-
-
     </div>
     <div class='dashboard-content px-2'>
       <?php
@@ -56,11 +57,9 @@
         include 'bloodRequest.php';
       } elseif ($link == 'donationsHistory') {
         include 'checkHistory.php';
-      }
-      elseif ($link == 'donorHealth') {
+      } elseif ($link == 'donorHealth') {
         include 'donorHealth.php';
-      }
-      elseif ($link == 'userFeedback') {
+      } elseif ($link == 'userFeedback') {
         include 'feedback.php';
       }
       ?>
@@ -71,7 +70,7 @@
 
   </section>
   <script>
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
       var preloader = document.getElementById('preloader');
       preloader.style.display = 'none';
     });

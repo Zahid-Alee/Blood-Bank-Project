@@ -95,6 +95,7 @@
 
   const form = document.getElementById('bloodDonationForm');
   form.addEventListener('submit', submitBloodDonationForm);
+
   function validateForm() {
     const donorNameInput = document.querySelector('input[name="donor_name"]');
     const lastDonatedDateInput = document.querySelector('input[name="last_donated_date"]');
@@ -169,14 +170,16 @@
 
     const formValues = new FormData(event.target);
     fetch('http://localhost/BBM/Model/insertDonor.php', {
-      method: 'POST',
-      body: formValues
-    })
+        method: 'POST',
+        body: formValues
+      })
       .then(response => response.text())
       .then(data => {
-        console.log('Success:', data);
+        console.log('inserted donor');
         createNotification('success', () => {
-          location.reload(); // Reload the page after the notification
+
+          alert("Your blood donation request has been submitted. ")
+          // location.reload(); // Reload the page after the notification
         });
       })
       .catch((error) => {
@@ -186,5 +189,4 @@
         });
       });
   }
-
 </script>

@@ -53,15 +53,12 @@ if (!empty($_POST["login-btn"])) {
 								</label>
 								<input class="form-control" type="password" name="login-password" id="login-password">
 							</div>
-							<div class="row d-flex">
-								<div class="mb-3">
-									<input class="btn btn-primary" type="submit" name="login-btn" id="login-btn"
-										value="Login">
-								</div>
-								<div class="mb-3">
-									<button class="btn btn-primary" name="signup-btn">
-										Register </button>
-								</div>
+							<div class="row d-flex justify-content-between px-3">
+								<input class="btn btn-primary col-sm-3" type="submit" name="login-btn" id="login-btn"
+									value="Login">
+								<a href="/BBM/user-registration.php" class="btn btn-primary col-sm-3" name="signup-btn">
+									Register
+								</a>
 							</div>
 
 						</form>
